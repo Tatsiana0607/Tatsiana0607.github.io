@@ -1,0 +1,231 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    font-family: sans-serif;
+    overflow-x: hidden;
+}
+
+
+/*------------------------------------------------------------------
+  	HEADER
+------------------------------------------------------------------*/
+
+/* Video Background */
+
+.video-header{
+    height: 100vh;
+}
+
+.video-wrap{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -9999;
+}
+
+.video-wrap video{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.video-overlay{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: 0.2;
+    z-index: -9998;
+}
+
+/* End Video Background */
+
+
+/* Navbar */
+
+.navbar{
+    width: 100%;
+    height: 95px;
+    position: fixed;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 2;
+    transition: all 0.4s;
+}
+
+.content{
+    width: 84%;
+    margin: auto;
+}
+
+.logo-img{
+    float: left;
+    width: 146px;
+    padding: 10px 0;
+}
+
+.logo-img-main {
+    display: inline-block;
+}
+
+.logo-img-active {
+    display: none;
+}
+
+.nav{
+    float: right;
+    padding: 25px 0;
+}
+
+.nav li{
+    display: inline-block;
+    padding: 0 20px;
+    list-style-type: none;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.nav li a{
+    text-decoration: none;
+}
+
+/* End Navbar */
+
+
+/* Headline and Form */
+
+.headline-form{
+    position: absolute;
+    width: 83%;
+    top: 30%;
+}
+
+.form-control {
+    height: 50px;
+    font-size: 14px;
+    font-weight: 400;
+    background: #fafafa;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding-left: 15px;
+}
+
+.sign-up-link{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.sign-up-link:hover{
+    color: #45607d;
+}
+
+#error{
+    display: none;
+    color: #e54e46;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* End Headline and Form */
+
+
+/* Button Styles */
+
+.button{
+    /*position: relative;*/
+    /*display: inline-block;*/
+    padding: 15px 30px;
+    border-width: 0;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
+    background: #6282a3;
+    cursor: pointer;
+}
+
+.button:hover, .button:focus, .button:active {
+    transition: all 0.5s;
+    background: #45607d;
+}
+
+/* End Button Styles */
+
+
+
+/*------------------------------------------------------------------
+  	FONT STYLES
+------------------------------------------------------------------*/
+
+.h1-home{
+    font-size: 80px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.h1-other{
+    font-size: 40px;
+}
+
+.p-home{
+    font-size: 18px;
+}
+
+p{
+    font-size: 15px;
+}
+
+
+
+
+/*------------------------------------------------------------------
+  	MAIN COLORS
+------------------------------------------------------------------*/
+
+.color-white{
+    color: white;
+}
+
+.color-base{
+    color: #6282a3;
+}
+
+.color-heading{
+    color: #515769;
+}
+
+.color-subtitle{
+    color: #a6a7aa;
+}
+
+.color-link{
+    color: #81848f;
+}
+
+.color-link-hover{
+    color: #999caa;
+}
+
+
+.bg-color-lightgrey{
+    background: #f2f0f0;
+}
+
+
+/*------------------------------------------------------------------
+  	MARGINS
+------------------------------------------------------------------*/
+
+
+.margin-b-20{
+    margin-bottom: 20px;
+}
