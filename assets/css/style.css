@@ -8,6 +8,10 @@ body{
     overflow-x: hidden;
 }
 
+.content-padding {
+    padding-top: 50px;
+    padding-bottom: 70px;
+}
 
 /*------------------------------------------------------------------
   	HEADER
@@ -48,6 +52,7 @@ body{
 /* End Video Background */
 
 
+
 /* Navbar */
 
 .navbar{
@@ -59,7 +64,7 @@ body{
     transition: all 0.4s;
 }
 
-.content{
+.header-content{
     width: 84%;
     margin: auto;
 }
@@ -87,9 +92,6 @@ body{
     display: inline-block;
     padding: 0 20px;
     list-style-type: none;
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
 }
 
 .nav li a{
@@ -97,6 +99,7 @@ body{
 }
 
 /* End Navbar */
+
 
 
 /* Headline and Form */
@@ -118,15 +121,6 @@ body{
     padding-left: 15px;
 }
 
-.sign-up-link{
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-.sign-up-link:hover{
-    color: #45607d;
-}
-
 #error{
     display: none;
     color: #e54e46;
@@ -138,7 +132,70 @@ body{
 /* End Headline and Form */
 
 
-/* Button Styles */
+
+/*------------------------------------------------------------------
+  	FOOTER
+------------------------------------------------------------------*/
+
+.footer {
+    background: url(../img/background/footer.jpg) no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.footer-seperator {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-list {
+    margin-bottom: 0;
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-item {
+    color: #cbd3e1;
+    margin-bottom: 25px;
+}
+
+.footer-link {
+    color: #cbd3e1;
+}
+
+.footer-link:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer .footer-input {
+    background: rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+}
+
+textarea.form-control {
+    height: auto;
+}
+
+.footer-content{
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.footer-logo {
+    width: 100px;
+    height: auto;
+}
+
+.copyright{
+    float: right;
+}
+
+
+
+
+/*------------------------------------------------------------------
+  	BUTTON STYLES
+------------------------------------------------------------------*/
 
 .button{
     /*position: relative;*/
@@ -158,7 +215,64 @@ body{
     background: #45607d;
 }
 
-/* End Button Styles */
+
+
+/*------------------------------------------------------------------
+  	LINK STYLES
+------------------------------------------------------------------*/
+
+.link, .nav-link {
+    position: relative;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all .3s;
+}
+
+.link{
+    color: #81848f;
+}
+
+.link:hover{
+    color: #a6a9b7;
+    text-decoration: none;
+}
+
+.nav-link:hover{
+    color: red;
+}
+
+.link:after {
+    position: absolute;
+    top: 6px;
+    right: -15px;
+    width: 9px;
+    height: 2px;
+    background: #1c94d2;
+    /*background: #6282a3;*/
+    content: " ";
+}
+
+.active:before, .nav-link:hover:before {
+    position: absolute;
+    top: 8px;
+    left: 2px;
+    width: 9px;
+    height: 2px;
+    background: #6282a3;
+    content: " ";
+    /*transition: all .3s;*/
+}
+
+.sign-up-link{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.sign-up-link:hover{
+    color: #45607d;
+}
+
 
 
 
@@ -176,14 +290,42 @@ body{
     font-size: 40px;
 }
 
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: #515769;
+    margin: 0 0 15px;
+}
+
+h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
+    color: #515769;
+}
+
+h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hover {
+    color: #999caa;
+    text-decoration: none;
+    transition: all .3s;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3, h4 {
+    font-size: 22px;
+}
+
+
 .p-home{
     font-size: 18px;
 }
 
-p{
+p {
     font-size: 15px;
+    font-weight: 400;
+    color: #a6a7aa;
+    margin-bottom: 15px;
 }
-
 
 
 
@@ -191,32 +333,19 @@ p{
   	MAIN COLORS
 ------------------------------------------------------------------*/
 
-.color-white{
+.color-white, .color-white:hover{
     color: white;
+}
+
+.color-heading, .color-heading:hover{
+    color: #515769;
 }
 
 .color-base{
     color: #6282a3;
 }
 
-.color-heading{
-    color: #515769;
-}
-
-.color-subtitle{
-    color: #a6a7aa;
-}
-
-.color-link{
-    color: #81848f;
-}
-
-.color-link-hover{
-    color: #999caa;
-}
-
-
-.bg-color-lightgrey{
+.bg-color{
     background: #f2f0f0;
 }
 
@@ -225,7 +354,23 @@ p{
   	MARGINS
 ------------------------------------------------------------------*/
 
+.margin-b-0{
+    margin-bottom: 0px;
+}
+
+.margin-b-10{
+    margin-bottom: 10px;
+}
 
 .margin-b-20{
     margin-bottom: 20px;
 }
+
+.margin-b-30{
+    margin-bottom: 30px;
+}
+
+
+
+
+
