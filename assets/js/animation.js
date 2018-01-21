@@ -1,4 +1,13 @@
 
+// прелоадер
+$(window).on('load', function () {
+    var $preloader = $('#page-preloader'),
+        $spinner   = $preloader.find('.spinner');
+    $spinner.fadeOut();
+    $preloader.delay(350).fadeOut('slow');
+});
+
+
 // изменение меню при прокрутке
 var navbarOnScroll = function() {
     if ($(window).scrollTop() > 50) {
@@ -29,4 +38,6 @@ $(document).ready(function() {
         navbarOnScroll();
     });
 });
+
+
 

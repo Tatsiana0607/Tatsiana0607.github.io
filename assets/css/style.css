@@ -13,6 +13,31 @@ body{
     padding-bottom: 70px;
 }
 
+
+/*------------------------------------------------------------------
+  	PRELOADER
+------------------------------------------------------------------*/
+
+#page-preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #e3f4fd;
+    z-index: 9999;
+}
+
+#page-preloader .spinner {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    left: 45%;
+    top: 45%;
+    background: url('../img/preloader.gif') no-repeat 50% 50%;
+}
+
+
 /*------------------------------------------------------------------
   	HEADER
 ------------------------------------------------------------------*/
@@ -191,6 +216,88 @@ textarea.form-control {
 }
 
 
+/*------------------------------------------------------------------
+  	PARALLAX
+------------------------------------------------------------------*/
+
+.parallax-content {
+    padding-top: 220px;
+    padding-bottom: 120px;
+}
+
+
+
+/*------------------------------------------------------------------
+  	BLOCKQUOTE
+------------------------------------------------------------------*/
+.blockquote {
+    position: relative;
+    font-size: 17px;
+    font-weight: 400;
+    /*font-family: Hind, sans-serif;*/
+    color: #a6a7aa;
+    /*line-height: 1.4;*/
+    /*border-left: none;*/
+    margin-left: 40px;
+}
+
+.blockquote:before {
+    position: absolute;
+    top: -10px;
+    left: -40px;
+    font-size: 60px;
+    display: inline-block;
+    color: #4f8abe;
+    content: '\201c';
+}
+
+
+/*------------------------------------------------------------------
+  	ADVANTAGES
+------------------------------------------------------------------*/
+
+.advantage {
+    background: #fff;
+    padding: 40px;
+}
+
+.advantage-icon {
+    display: block;
+    font-size: 30px;
+    color: #999caa;
+    margin-bottom: 30px;
+    transition: all 0.3s;
+}
+
+.advantage-info {
+    transition: all 0.3s;
+}
+
+.advantage:hover .advantage-icon {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    transform: translateY(-100%);
+    transition: all 0.3s;
+}
+
+.advantage:hover .advantage-info {
+    -webkit-transform: translateY(-23%);
+    -moz-transform: translateY(-23%);
+    transform: translateY(-23%);
+    transition: all 0.3s;
+}
+
+
+.row-space-1 {
+    margin-right: -1px;
+    margin-left: -1px;
+}
+
+.row-space-1 > [class*="col-"] {
+    padding-left: 1px;
+    padding-right: 1px;
+}
 
 
 /*------------------------------------------------------------------
@@ -229,9 +336,9 @@ textarea.form-control {
     transition: all .3s;
 }
 
-.link{
-    color: #81848f;
-}
+/*.link{*/
+    /*color: #81848f;*/
+/*}*/
 
 .link:hover{
     color: #a6a9b7;
@@ -253,7 +360,7 @@ textarea.form-control {
     content: " ";
 }
 
-.active:before, .nav-link:hover:before {
+.active-link:before, .nav-link:hover:before {
     position: absolute;
     top: 8px;
     left: 2px;
@@ -280,7 +387,7 @@ textarea.form-control {
   	FONT STYLES
 ------------------------------------------------------------------*/
 
-.h1-home{
+.h1-home, .h1-other{
     font-size: 80px;
     font-weight: 700;
     text-transform: uppercase;
@@ -327,7 +434,16 @@ p {
     margin-bottom: 15px;
 }
 
+span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #bfc1c7;
+    /*margin-left: 30px;*/
+}
 
+.f-weight-700{
+    font-weight: 700;
+}
 
 /*------------------------------------------------------------------
   	MAIN COLORS
@@ -339,6 +455,10 @@ p {
 
 .color-heading, .color-heading:hover{
     color: #515769;
+}
+
+.color-link{
+    color: #81848f;
 }
 
 .color-base{
@@ -354,9 +474,17 @@ p {
   	MARGINS
 ------------------------------------------------------------------*/
 
+/*.margin-0{*/
+    /*margin: 0;*/
+/*}*/
+
 .margin-b-0{
     margin-bottom: 0px;
 }
+
+.margin-b-2{
+      margin-bottom: 2px;
+  }
 
 .margin-b-10{
     margin-bottom: 10px;
@@ -369,6 +497,16 @@ p {
 .margin-b-30{
     margin-bottom: 30px;
 }
+
+.margin-l-20{
+    margin-left: 20px;
+}
+
+
+
+
+
+
 
 
 
