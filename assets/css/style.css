@@ -13,6 +13,15 @@ body{
     padding-bottom: 70px;
 }
 
+.row-space-1 {
+    margin-right: -1px;
+    margin-left: -1px;
+}
+
+.row-space-1 > [class|="col"] {
+    padding-left: 1px;
+    padding-right: 1px;
+}
 
 /*------------------------------------------------------------------
   	PRELOADER
@@ -197,6 +206,10 @@ body{
     color: #ffffff;
 }
 
+.search .footer-input{
+    background: rgba(0, 0, 0, 0.1);
+}
+
 textarea.form-control {
     height: auto;
 }
@@ -234,10 +247,7 @@ textarea.form-control {
     position: relative;
     font-size: 17px;
     font-weight: 400;
-    /*font-family: Hind, sans-serif;*/
     color: #a6a7aa;
-    /*line-height: 1.4;*/
-    /*border-left: none;*/
     margin-left: 40px;
 }
 
@@ -289,15 +299,36 @@ textarea.form-control {
 }
 
 
-.row-space-1 {
-    margin-right: -1px;
-    margin-left: -1px;
+
+/*------------------------------------------------------------------
+  	CATALOG
+------------------------------------------------------------------*/
+
+.tour {
+    padding: 40px 45px;
+    background: #fff;
+    margin-top: 2px;
 }
 
-.row-space-1 > [class*="col-"] {
-    padding-left: 1px;
-    padding-right: 1px;
+.tour-feature {
+    position: relative;
+    font-size: 13px;
+    color: #81848f;
+    padding-left: 20px;
+    margin-bottom: 10px;
 }
+
+.tour-feature:before {
+    position: absolute;
+    top: 7px;
+    left: 0;
+    width: 9px;
+    height: 2px;
+    background: #1c94d2;
+    content: " ";
+    margin-right: 10px;
+}
+
 
 
 /*------------------------------------------------------------------
@@ -305,8 +336,6 @@ textarea.form-control {
 ------------------------------------------------------------------*/
 
 .button{
-    /*position: relative;*/
-    /*display: inline-block;*/
     padding: 15px 30px;
     border-width: 0;
     font-size: 13px;
@@ -336,10 +365,6 @@ textarea.form-control {
     transition: all .3s;
 }
 
-/*.link{*/
-    /*color: #81848f;*/
-/*}*/
-
 .link:hover{
     color: #a6a9b7;
     text-decoration: none;
@@ -356,7 +381,6 @@ textarea.form-control {
     width: 9px;
     height: 2px;
     background: #1c94d2;
-    /*background: #6282a3;*/
     content: " ";
 }
 
@@ -368,7 +392,6 @@ textarea.form-control {
     height: 2px;
     background: #6282a3;
     content: " ";
-    /*transition: all .3s;*/
 }
 
 .sign-up-link{
@@ -379,7 +402,6 @@ textarea.form-control {
 .sign-up-link:hover{
     color: #45607d;
 }
-
 
 
 
@@ -438,12 +460,12 @@ span {
     font-size: 14px;
     font-weight: 400;
     color: #bfc1c7;
-    /*margin-left: 30px;*/
 }
 
 .f-weight-700{
     font-weight: 700;
 }
+
 
 /*------------------------------------------------------------------
   	MAIN COLORS
@@ -473,10 +495,6 @@ span {
 /*------------------------------------------------------------------
   	MARGINS
 ------------------------------------------------------------------*/
-
-/*.margin-0{*/
-    /*margin: 0;*/
-/*}*/
 
 .margin-b-0{
     margin-bottom: 0px;
