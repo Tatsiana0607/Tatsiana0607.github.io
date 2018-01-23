@@ -330,6 +330,21 @@ textarea.form-control {
 }
 
 
+/*------------------------------------------------------------------
+  	CONTACTS
+------------------------------------------------------------------*/
+.contact-list > li {
+    font-size: 13px;
+    color: #81848f;
+    margin-bottom: 10px;
+}
+
+
+.height-500 {
+    height: 500px !important;
+}
+
+
 
 /*------------------------------------------------------------------
   	BUTTON STYLES
@@ -487,6 +502,10 @@ span {
     color: #6282a3;
 }
 
+.color-blue{
+    color: #1c94d2;
+}
+
 .bg-color{
     background: #f2f0f0;
 }
@@ -518,6 +537,10 @@ span {
 
 .margin-l-20{
     margin-left: 20px;
+}
+
+.margin-r-10{
+    margin-right: 10px;
 }
 
 
