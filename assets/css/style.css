@@ -266,7 +266,7 @@ textarea.form-control {
   	ADVANTAGES
 ------------------------------------------------------------------*/
 
-.advantage {
+.advantage, .question {
     background: #fff;
     padding: 40px;
 }
