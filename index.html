@@ -17,36 +17,34 @@
 
     <!------------------ BEGIN HEADER ------------------->
 
-    <header class="video-header">
-        <div class="video-wrap">
-            <video autoplay loop muted><source src="assets/video/norway.mp4" type="video/mp4"></video>
-        </div>
+    <header class="navbar fixed-top navbar-expand-lg">
+        <div class="container">
 
-        <div class="video-overlay"></div>
-
-        <div class="navbar">
-            <div class="header-content">
+            <!-- Brand -->
+            <div class="navbar-brand">
                 <img class="logo-img logo-img-main" src="assets/img/logo.png" alt="Polar Star Logo">
                 <img class="logo-img logo-img-active" src="assets/img/logo-dark.png" alt="Polar Star Logo">
-
-                <nav class="nav collapse navbar-collapse" id="navbarCollapse">
-
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <ul>
-                        <li class="nav-link active-link"><a class="color-white" href="index.html">Главная</a></li>
-                        <li class="nav-link"><a class="color-white" href="about.html">О компании</a></li>
-                        <li class="nav-link"><a class="color-white" href="catalog.html">Каталог</a></li>
-                        <li class="nav-link"><a class="color-white" href="faq.html">FAQ</a></li>
-                        <li class="nav-link"><a class="color-white" href="contact.html">Контакты</a></li>
-                        <!--<li class="nav-link" id="admin"><a class="color-white" href="admin.html">Администрирование</a></li>-->
-                        <!--<li class="button" id="logout" onclick="logOut();">Выйти</li>-->
-                    </ul>
-                </nav>
             </div>
+
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <nav class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active-link color-white" href="index.html">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link color-white" href="about.html">О компании</a></li>
+                    <li class="nav-item"><a class="nav-link color-white" href="catalog.html">Каталог</a></li>
+                    <li class="nav-item"><a class="nav-link color-white" href="faq.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link color-white" href="contact.html">Контакты</a></li>
+                </ul>
+            </nav>
+
         </div>
+    </header>
+
 
         <div class="container">
             <div class="row headline-form">
@@ -63,10 +61,15 @@
                 </div>
             </div>
         </div>
-    </header>
 
     <!------------------ END HEADER ----------------->
 
+    <div class="video-bg">
+        <div class="video-wrap">
+            <video autoplay loop muted><source src="assets/video/norway.mp4" type="video/mp4"></video>
+        </div>
+        <div class="video-overlay"></div>
+    </div>
 
     <!---------------- BEGIN MAIN ------------------->
 
@@ -310,6 +313,7 @@
 
     <!------------------ SCRIPTS -------------------->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/script.js"></script>
 

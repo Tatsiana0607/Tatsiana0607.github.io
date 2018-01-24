@@ -58,60 +58,21 @@ body{
   	HEADER
 ------------------------------------------------------------------*/
 
-/* Video Background */
-
-.video-header{
-    height: 100vh;
-}
-
-.video-wrap{
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: -9999;
-}
-
-.video-wrap video{
-    min-width: 100%;
-    min-height: 100%;
-}
-
-.video-overlay{
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #000000;
-    opacity: 0.2;
-    z-index: -9998;
-}
-
-/* End Video Background */
-
-
-
 /* Navbar */
 
 .navbar{
-    width: 100%;
-    height: 95px;
-    position: fixed;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    z-index: 2;
     transition: all 0.4s;
 }
 
-.header-content{
-    width: 84%;
-    margin: auto;
+nav{
+    flex-direction: row-reverse;
+}
+
+nav li{
+    padding: 0 15px;
 }
 
 .logo-img{
-    float: left;
     width: 146px;
     padding: 10px 0;
 }
@@ -124,22 +85,58 @@ body{
     display: none;
 }
 
-.nav{
+
+
+/* Navbar Toggle */
+.navbar-toggler {
+    width: 25px;
+    height: 25px;
+    margin: 30px 20px 30px 0;
     float: right;
-    padding: 25px 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
-.nav li{
-    display: inline-block;
-    padding: 0 20px;
-    list-style-type: none;
+.navbar-toggler:focus{
+    outline: none;
 }
 
-.nav li a{
-    text-decoration: none;
+.navbar-toggler .navbar-toggler-icon {
+     position: relative;
+     width: 21px;
+     height: 2px;
+     display: inline-block;
+     background: #4f8abe;
+     transition: .3s all;
+ }
+
+.navbar-toggler .navbar-toggler-icon:before,
+.navbar-toggler .navbar-toggler-icon:after {
+    position: absolute;
+    left: 0;
+    background: #4f8abe;
+    content: " ";
+    transition: .3s all;
 }
 
-/* End Navbar */
+.navbar-toggler .navbar-toggler-icon:before {
+    width: 10px;
+    height: 2px;
+    bottom: 14px;
+}
+
+.navbar-toggler .navbar-toggler-icon:after {
+    width: 16px;
+    height: 2px;
+    top: -7px;
+}
+
+.navbar-toggler:hover .navbar-toggler-icon:before,
+.navbar-toggler:hover .navbar-toggler-icon:after {
+    width: 21px;
+    transition: .3s all;
+}
 
 
 
@@ -169,8 +166,6 @@ body{
     font-weight: bold;
     margin-bottom: 15px;
 }
-
-/* End Headline and Form */
 
 
 
@@ -244,6 +239,42 @@ textarea.form-control {
     padding-top: 220px;
     padding-bottom: 120px;
 }
+
+
+/*------------------------------------------------------------------
+  	VIDEO BACKGROUND
+------------------------------------------------------------------*/
+
+.video-bg{
+    height: 100vh;
+}
+
+.video-wrap{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -9999;
+}
+
+.video-wrap video{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.video-overlay{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: 0.2;
+    z-index: -9998;
+}
+
 
 
 /*------------------------------------------------------------------
@@ -432,9 +463,6 @@ textarea.form-control {
     text-decoration: none;
 }
 
-.nav-link:hover{
-    color: red;
-}
 
 .link:after {
     position: absolute;
@@ -448,11 +476,11 @@ textarea.form-control {
 
 .active-link:before, .nav-link:hover:before {
     position: absolute;
-    top: 8px;
-    left: 2px;
+    top: 16px;
+    left: -14px;
     width: 9px;
     height: 2px;
-    background: #6282a3;
+    background: #4f8abe;
     content: " ";
 }
 
