@@ -181,7 +181,13 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMM2w1JkMhEf-AQt1qIoAq2029vcrAQag&amp;callback=initMap" async defer></script>
 
     <script>
-        new WOW().init();
+        var wow = new WOW(
+                {
+                    mobile: false,
+                    tablet: false
+                }
+        );
+        wow.init();
     </script>
 
 </body>

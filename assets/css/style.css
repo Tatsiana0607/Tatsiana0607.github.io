@@ -86,12 +86,20 @@ nav li{
 }
 
 
+@media (max-width: 991px) {
+    .logo-img{
+        width: 100px;
+        padding: 0;
+    }
+}
+
+
 
 /* Navbar Toggle */
 .navbar-toggler {
     width: 25px;
     height: 25px;
-    margin: 30px 20px 30px 0;
+    margin-right: 20px;
     float: right;
     border: none;
     background-color: transparent;
@@ -174,9 +182,8 @@ nav li{
 ------------------------------------------------------------------*/
 
 .footer {
-    background: url(../img/background/footer.jpg) no-repeat;
+    background: url(../img/background/footer.jpg) center center no-repeat;
     background-size: cover;
-    background-position: center center;
 }
 
 .footer-seperator {
@@ -242,7 +249,7 @@ textarea.form-control {
 
 
 /*------------------------------------------------------------------
-  	VIDEO BACKGROUND
+  	VIDEO BACKGROUND / IMAGE
 ------------------------------------------------------------------*/
 
 .video-bg{
@@ -256,7 +263,7 @@ textarea.form-control {
     top: 0;
     left: 0;
     overflow: hidden;
-    z-index: -9999;
+    z-index: -9998;
 }
 
 .video-wrap video{
@@ -272,10 +279,15 @@ textarea.form-control {
     left: 0;
     background-color: #000000;
     opacity: 0.2;
-    z-index: -9998;
+    z-index: -9997;
 }
 
-
+.img-mobile{
+    background: url("../img/background/mobile.jpg") center center no-repeat fixed;
+    background-size: cover;
+    min-height:100%;
+    display: none;
+}
 
 /*------------------------------------------------------------------
   	GALLERY
@@ -619,7 +631,47 @@ span {
 }
 
 
-
+@media (max-width: 768px) {
+    .sm-margin-b-0 {
+        margin-bottom: 0 !important;
+    }
+    .sm-margin-b-2 {
+        margin-bottom: 2px !important;
+    }
+    .sm-margin-b-5 {
+        margin-bottom: 5px !important;
+    }
+    .sm-margin-b-10 {
+        margin-bottom: 10px !important;
+    }
+    .sm-margin-b-20 {
+        margin-bottom: 20px !important;
+    }
+    .sm-margin-b-30 {
+        margin-bottom: 30px !important;
+    }
+    .sm-margin-b-40 {
+        margin-bottom: 40px !important;
+    }
+    .sm-margin-b-50 {
+        margin-bottom: 50px !important;
+    }
+    .sm-margin-b-60 {
+        margin-bottom: 60px !important;
+    }
+    .sm-margin-b-70 {
+        margin-bottom: 70px !important;
+    }
+    .sm-margin-b-80 {
+        margin-bottom: 80px !important;
+    }
+    .sm-margin-b-90 {
+        margin-bottom: 90px !important;
+    }
+    .sm-margin-b-100 {
+        margin-bottom: 100px !important;
+    }
+}
 
 
 

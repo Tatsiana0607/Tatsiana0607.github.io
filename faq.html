@@ -413,7 +413,13 @@
     <script src="assets/js/script.js"></script>
 
     <script>
-        new WOW().init();
+        var wow = new WOW(
+                {
+                    mobile: false,
+                    tablet: false
+                }
+        );
+        wow.init();
     </script>
 
 </body>

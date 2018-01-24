@@ -8,44 +8,45 @@ $(window).on('load', function () {
 });
 
 
-// изменение меню при прокрутке
-var changeNavbar = function() {
+// изменение меню при прокрутке и на средних и малых устройствах
+function changeNavbar() {
     if ($(window).scrollTop() > 50 || window.matchMedia("(max-width: 991px)").matches) {
         $('.logo-img-active').css('display', 'inline-block');
         $('.logo-img-main').css('display', 'none');
-        $('.navbar').css('background', 'white');
-        $('.navbar').css('border-bottom', 'none');
-        $('.navbar').css('box-shadow', '0px 0px 8px lightgrey');
-        $('nav ul li a').removeClass('color-white');
-        $('nav ul li a').addClass('color-heading');
+        $('.navbar').css('background', 'white').css('border-bottom', 'none').css('box-shadow', '0px 0px 8px lightgrey');
+        $('nav ul li a').removeClass('color-white').addClass('color-heading');
     }
     else {
         $('.logo-img-active').css('display', 'none');
         $('.logo-img-main').css('display', 'inline-block');
-        $('.navbar').css('background', 'transparent');
-        $('.navbar').css('border-bottom', '1px solid rgba(255, 255, 255, 0.2)');
-        $('.navbar').css('box-shadow', 'none');
-        $('nav ul li a').removeClass('color-heading');
-        $('nav ul li a').addClass('color-white');
+        $('.navbar').css('background', 'transparent').css('border-bottom', '1px solid rgba(255, 255, 255, 0.2)').css('box-shadow', 'none');
+        $('nav ul li a').removeClass('color-heading').addClass('color-white');
+    }
+}
+
+function disableVideo(){
+    if (window.matchMedia("(max-width: 576px)").matches) {
+        $('.video-wrap').css('display', 'none');
+        $('.img-mobile').css('display', 'block');
+    }
+    else{
+        $('.video-wrap').css('display', 'block');
+        $('.img-mobile').css('display', 'none');
     }
 }
 
 $(document).ready(function() {
-
+    disableVideo();
     changeNavbar();
-
-    $(window).scroll(function() {
+    $(window).scroll(changeNavbar);
+    $(window).resize(function () {
         changeNavbar();
-    });
-
-    $(window).resize(function() {
-        changeNavbar();
+        disableVideo();
     });
 });
 
 
 //подключение Google Maps
-
 window.initMap = function() {
     var customMapType = new google.maps.StyledMapType([
     {
