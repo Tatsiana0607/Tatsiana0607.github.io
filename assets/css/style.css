@@ -23,6 +23,11 @@ body{
     padding-right: 1px;
 }
 
+.height-500 {
+    height: 500px;
+}
+
+
 /*------------------------------------------------------------------
   	PRELOADER
 ------------------------------------------------------------------*/
@@ -41,9 +46,11 @@ body{
     width: 100px;
     height: 100px;
     position: absolute;
-    left: 45%;
-    top: 40%;
-    background: url('../img/earth-preloader.gif') no-repeat 50% 50%;
+    left: 50%;
+    top: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    background: url('../img/earth-preloader.gif');
 }
 
 
@@ -239,7 +246,6 @@ textarea.form-control {
 }
 
 
-
 /*------------------------------------------------------------------
   	GALLERY
 ------------------------------------------------------------------*/
@@ -286,9 +292,10 @@ textarea.form-control {
 
 
 /*------------------------------------------------------------------
-  	BLOCKQUOTE
+  	REVIEWS
 ------------------------------------------------------------------*/
-.blockquote {
+
+.review {
     position: relative;
     font-size: 17px;
     font-weight: 400;
@@ -296,7 +303,7 @@ textarea.form-control {
     margin-left: 40px;
 }
 
-.blockquote:before {
+.review:before {
     position: absolute;
     top: -10px;
     left: -40px;
@@ -378,17 +385,12 @@ textarea.form-control {
 /*------------------------------------------------------------------
   	CONTACTS
 ------------------------------------------------------------------*/
+
 .contact-list > li {
     font-size: 13px;
     color: #81848f;
     margin-bottom: 10px;
 }
-
-
-.height-500 {
-    height: 500px !important;
-}
-
 
 
 /*------------------------------------------------------------------
