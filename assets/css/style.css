@@ -154,8 +154,8 @@ nav li{
     top: -7px;
 }
 
-.navbar-toggler:hover .navbar-toggler-icon:before,
-.navbar-toggler:hover .navbar-toggler-icon:after {
+.navbar-toggler.collapsed .navbar-toggler-icon:before,
+.navbar-toggler.collapsed .navbar-toggler-icon:after {
     width: 21px;
     -webkit-transition: .3s all;
     -o-transition: .3s all;
