@@ -107,6 +107,7 @@ $(document).ready(function() {
     $(window).scroll(changeNavbar);
     $(window).resize(function () {
         disableVideo();
+        deleteHeadline();
         changeNavbar();
     });
 
