@@ -4,7 +4,9 @@ $(window).on('load', function () {
     var $preloader = $('#page-preloader'),
         $spinner   = $preloader.find('.spinner');
     $spinner.fadeOut();
-    $preloader.delay(350).fadeOut('slow');
+    $preloader.delay(250).fadeOut(500, function() {
+        $('body').removeClass('loading');
+    });
 });
 
 
@@ -110,6 +112,8 @@ $(document).ready(function() {
         deleteHeadline();
         changeNavbar();
     });
+    //$('body').css('overflow','visible');
+
 
     // кнопка back-to-top
     var offset = 300, scrollDuration = 700, backToTop = $('.back-to-top');

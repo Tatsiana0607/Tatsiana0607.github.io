@@ -39,6 +39,11 @@ body{
   	PRELOADER
 ------------------------------------------------------------------*/
 
+.loading {
+    overflow: hidden;
+    height: 100vh;
+}
+
 #page-preloader {
     position: fixed;
     left: 0;
