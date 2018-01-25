@@ -4,9 +4,9 @@ $(window).on('load', function () {
     var $preloader = $('#page-preloader'),
         $spinner   = $preloader.find('.spinner');
     $spinner.fadeOut();
-    $preloader.delay(250).fadeOut(500, function() {
-        $('body').removeClass('loading');
-    });
+    $preloader.delay(200);
+    $('html').removeClass('hide-scrollbar');
+    $preloader.fadeOut(500);
 });
 
 

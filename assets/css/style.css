@@ -35,14 +35,15 @@ body{
 }
 
 
+.hide-scrollbar ::-webkit-scrollbar{
+    display: none;
+}
+
+
+
 /*------------------------------------------------------------------
   	PRELOADER
 ------------------------------------------------------------------*/
-
-.loading {
-    overflow: hidden;
-    height: 100vh;
-}
 
 #page-preloader {
     position: fixed;
