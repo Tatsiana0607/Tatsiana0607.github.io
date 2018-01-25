@@ -98,12 +98,12 @@ $(document).ready(function() {
     });
 
     //кнопка back-to-top
-    var offset = 300, scrollDuration = 700, backToTop = $('.js-back-to-top');
+    var offset = 300, scrollDuration = 700, backToTop = $('.back-to-top');
 
     $(window).scroll(function(){
         if ($(this).scrollTop() > offset )
-            backToTop.addClass('back-to-top-is-visible');
-        else backToTop.removeClass('back-to-top-is-visible');
+            backToTop.addClass('visible');
+        else backToTop.removeClass('visible');
     });
 
     backToTop.on('click', function(event){
