@@ -161,9 +161,9 @@ nav li{
     top: 30%;
 }
 
-@media (min-width: 1900px) {
+@media (min-width: 1400px) {
     .headline-form{
-        width: 60%;
+        width: 80%;
     }
 }
 
@@ -173,11 +173,12 @@ nav li{
     }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1900px) {
     .headline-form{
-        width: 80%;
+        width: 60%;
     }
 }
+
 
 @media (max-width: 992px) {
     .headline-form{
