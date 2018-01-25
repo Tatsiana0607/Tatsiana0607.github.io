@@ -679,7 +679,7 @@ span {
 
 @media (max-width: 400px) {
     .h1-home {
-        font-size: 50px;
+        font-size: 40px;
     }
     .p-home{
         font-size: 15px;
@@ -738,14 +738,6 @@ span {
 .margin-b-30{
     margin-bottom: 30px;
 }
-
-/*.margin-t{*/
-    /*margin-top: calc(80vmin / 2 - 80px);*/
-/*}*/
-
-/*@media (max-width: 768px) {*/
-
-/*}*/
 
 .margin-l-20{
     margin-left: 20px;
