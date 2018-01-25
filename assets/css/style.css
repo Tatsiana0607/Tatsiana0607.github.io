@@ -727,6 +727,15 @@ span {
     }
 }
 
+@media handheld and (orientation : landscape) {
+    .h1-home {
+        display: none;
+    }
+    .p-home{
+        display: none;
+    }
+}
+
 
 /*------------------------------------------------------------------
   	MAIN COLORS

@@ -27,17 +27,17 @@ function changeNavbar() {
 }
 
 
-// удаление заголовка при просмотре в альбомной ориентации на телефоне
-function deleteHeadline(){
-    if (window.matchMedia("(max-width: 768px) and (orientation : landscape)").matches) {
-        $('.h1-home').css('display', 'none');
-        $('.p-home').css('display', 'none');
-    }
-    else{
-        $('.h1-home').css('display', 'block');
-        $('.p-home').css('display', 'block');
-    }
-}
+//// удаление заголовка при просмотре в альбомной ориентации на телефоне
+//function deleteHeadline(){
+//    if (window.matchMedia("handheld and (orientation : landscape)").matches) {
+//        $('.h1-home').css('display', 'none');
+//        $('.p-home').css('display', 'none');
+//    }
+//    else{
+//        $('.h1-home').css('display', 'block');
+//        $('.p-home').css('display', 'block');
+//    }
+//}
 
 
 // подключение Google Maps
@@ -92,11 +92,11 @@ window.initMap = function() {
 
 
 $(document).ready(function() {
-    deleteHeadline();
+    //deleteHeadline();
     changeNavbar();
     $(window).scroll(changeNavbar);
     $(window).resize(function () {
-        deleteHeadline();
+        //deleteHeadline();
         changeNavbar();
     });
 
