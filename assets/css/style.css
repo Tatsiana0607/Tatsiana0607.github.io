@@ -13,6 +13,13 @@ body{
     padding-bottom: 70px;
 }
 
+@media (max-width: 768px) {
+    .content-padding {
+        padding-top: 20px;
+        padding-bottom: 30px;
+    }
+}
+
 .row-space-1 {
     margin-right: -1px;
     margin-left: -1px;
@@ -366,6 +373,12 @@ textarea.form-control {
     padding: 40px;
 }
 
+@media (max-width: 768px) {
+    .advantage, .question {
+        padding: 30px;
+    }
+}
+
 .advantage-icon {
     display: block;
     font-size: 30px;
@@ -575,6 +588,13 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 0 15px;
 }
 
+@media (max-width: 768px) {
+    h2 {
+        margin: 0;
+    }
+}
+
+
 h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
     color: #515769;
 }
@@ -682,41 +702,17 @@ span {
     .sm-margin-b-0 {
         margin-bottom: 0 !important;
     }
-    .sm-margin-b-2 {
-        margin-bottom: 2px !important;
-    }
-    .sm-margin-b-5 {
-        margin-bottom: 5px !important;
-    }
     .sm-margin-b-10 {
         margin-bottom: 10px !important;
-    }
-    .sm-margin-b-20 {
-        margin-bottom: 20px !important;
     }
     .sm-margin-b-30 {
         margin-bottom: 30px !important;
     }
-    .sm-margin-b-40 {
-        margin-bottom: 40px !important;
-    }
-    .sm-margin-b-50 {
-        margin-bottom: 50px !important;
-    }
-    .sm-margin-b-60 {
-        margin-bottom: 60px !important;
-    }
-    .sm-margin-b-70 {
-        margin-bottom: 70px !important;
-    }
-    .sm-margin-b-80 {
-        margin-bottom: 80px !important;
-    }
-    .sm-margin-b-90 {
-        margin-bottom: 90px !important;
-    }
-    .sm-margin-b-100 {
-        margin-bottom: 100px !important;
+}
+
+@media (max-width: 992px) {
+    .md-margin-b-10 {
+        margin-bottom: 10px !important;
     }
 }
 
