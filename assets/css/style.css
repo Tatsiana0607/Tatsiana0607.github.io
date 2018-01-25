@@ -175,21 +175,10 @@ nav li{
     }
 }
 
-@media (max-width: 478px) {
-    .headline-form{
-        top: 15%;
-    }
-}
-
-/*.headline{*/
-    /*position: absolute;*/
-    /*top: 30%;*/
-/*}*/
-
-/*.form{*/
-    /*position: absolute;*/
-    /*top: 30%;*/
-    /*right: 10%;*/
+/*@media (max-width: 478px) {*/
+    /*.headline-form{*/
+        /*top: 15%;*/
+    /*}*/
 /*}*/
 
 .form-control {
@@ -203,7 +192,12 @@ nav li{
     padding-left: 15px;
 }
 
-
+@media (max-width: 576px) {
+    .form-control {
+        height: 40px;
+        font-size: 12px;
+    }
+}
 
 /*------------------------------------------------------------------
   	FOOTER
@@ -668,14 +662,14 @@ span {
 
 }
 
-/*@media (max-width: 576px) {*/
-    /*.h1-home {*/
-        /*font-size: 50px;*/
-    /*}*/
-    /*.p-home{*/
-        /*font-size: 15px;*/
-    /*}*/
-/*}*/
+@media (max-width: 576px) {
+    .h1-home {
+        font-size: 40px;
+    }
+    .p-home{
+        font-size: 15px;
+    }
+}
 
 @media (max-width: 400px) {
     .h1-home {
