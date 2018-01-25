@@ -24,6 +24,7 @@ function changeNavbar() {
     }
 }
 
+//отключение фонового видео для мобильных устройств
 function disableVideo(){
     if (window.matchMedia("(max-width: 576px)").matches) {
         $('.video-wrap').css('display', 'none');
@@ -34,16 +35,6 @@ function disableVideo(){
         $('.img-mobile').css('display', 'none');
     }
 }
-
-$(document).ready(function() {
-    disableVideo();
-    changeNavbar();
-    $(window).scroll(changeNavbar);
-    $(window).resize(function () {
-        changeNavbar();
-        disableVideo();
-    });
-});
 
 
 //подключение Google Maps
@@ -95,3 +86,28 @@ window.initMap = function() {
     map.setMapTypeId(customMapTypeId);
 }
 
+
+
+$(document).ready(function() {
+    disableVideo();
+    changeNavbar();
+    $(window).scroll(changeNavbar);
+    $(window).resize(function () {
+        changeNavbar();
+        disableVideo();
+    });
+
+    //кнопка back-to-top
+    var offset = 300, scrollDuration = 700, backToTop = $('.js-back-to-top');
+
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > offset )
+            backToTop.addClass('back-to-top-is-visible');
+        else backToTop.removeClass('back-to-top-is-visible');
+    });
+
+    backToTop.on('click', function(event){
+        event.preventDefault();
+        $('body,html').animate({scrollTop: 0}, scrollDuration);
+    });
+});

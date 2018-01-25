@@ -326,9 +326,9 @@ textarea.form-control {
 
 .gallery:hover .gallery-content {
     opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate(0);
+    -moz-transform: translate(0);
+    transform: translate(0);
     transition: .3s all;
 }
 
@@ -456,6 +456,53 @@ textarea.form-control {
     background: #45607d;
 }
 
+
+/*--------------------------------------------------
+    BACK TO TOP BUTTON STYLE
+----------------------------------------------------*/
+
+.back-to-top {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    color: #fff;
+    text-align: center;
+    line-height: 1;
+    background: #515769;
+    border-radius: 3px;
+    opacity: 0;
+    padding: 5px;
+    -webkit-transform: translateY(50px);
+    -moz-transform: translateY(50px);
+    transform: translateY(50px);
+    transition: .3s all;
+}
+
+.back-to-top:hover {
+    color: #fff;
+    transition: .3s all;
+}
+
+.back-to-top:focus, .back-to-top:hover {
+    text-decoration: none;
+}
+
+.back-to-top.back-to-top-is-visible {
+    opacity: .6;
+    -webkit-transform: translate(0);
+    -moz-transform: translate(0);
+    transform: translate(0);
+    transition: .3s all;
+}
+
+.back-to-top.back-to-top-is-visible:hover {
+    opacity: 1;
+    transition: .3s all;
+}
 
 
 /*------------------------------------------------------------------
