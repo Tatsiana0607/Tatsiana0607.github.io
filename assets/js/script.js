@@ -26,17 +26,6 @@ function changeNavbar() {
     }
 }
 
-// отключение фонового видео для мобильных устройств
-function disableVideo(){
-    if (window.matchMedia("(max-width: 768px)").matches) {
-        $('.video-wrap').css('display', 'none');
-        $('.img-mobile').css('display', 'block');
-    }
-    else{
-        $('.video-wrap').css('display', 'block');
-        $('.img-mobile').css('display', 'none');
-    }
-}
 
 // удаление заголовка при просмотре в альбомной ориентации на телефоне
 function deleteHeadline(){
@@ -103,17 +92,13 @@ window.initMap = function() {
 
 
 $(document).ready(function() {
-    disableVideo();
     deleteHeadline();
     changeNavbar();
     $(window).scroll(changeNavbar);
     $(window).resize(function () {
-        disableVideo();
         deleteHeadline();
         changeNavbar();
     });
-    //$('body').css('overflow','visible');
-
 
     // кнопка back-to-top
     var offset = 300, scrollDuration = 700, backToTop = $('.back-to-top');

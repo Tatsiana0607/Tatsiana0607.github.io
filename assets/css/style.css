@@ -333,6 +333,14 @@ textarea.form-control {
     display: none;
 }
 
+@media (max-width: 768px) {
+    .video-wrap{
+        display: none;
+    }
+    .img-mobile{
+        display: block;
+    }
+}
 
 /*------------------------------------------------------------------
   	GALLERY
