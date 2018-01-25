@@ -26,20 +26,6 @@ function changeNavbar() {
     }
 }
 
-
-//// удаление заголовка при просмотре в альбомной ориентации на телефоне
-//function deleteHeadline(){
-//    if (window.matchMedia("handheld and (orientation : landscape)").matches) {
-//        $('.h1-home').css('display', 'none');
-//        $('.p-home').css('display', 'none');
-//    }
-//    else{
-//        $('.h1-home').css('display', 'block');
-//        $('.p-home').css('display', 'block');
-//    }
-//}
-
-
 // подключение Google Maps
 window.initMap = function() {
     var customMapType = new google.maps.StyledMapType([
@@ -92,11 +78,9 @@ window.initMap = function() {
 
 
 $(document).ready(function() {
-    //deleteHeadline();
     changeNavbar();
     $(window).scroll(changeNavbar);
     $(window).resize(function () {
-        //deleteHeadline();
         changeNavbar();
     });
 
