@@ -24,7 +24,7 @@ function changeNavbar() {
     }
 }
 
-//отключение фонового видео для мобильных устройств
+// отключение фонового видео для мобильных устройств
 function disableVideo(){
     if (window.matchMedia("(max-width: 768px)").matches) {
         $('.video-wrap').css('display', 'none');
@@ -36,7 +36,7 @@ function disableVideo(){
     }
 }
 
-
+// удаление заголовка при просмотре в альбомной ориентации на телефоне
 function deleteHeadline(){
     if (window.matchMedia("(max-width: 768px) and (orientation : landscape)").matches) {
         $('.h1-home').css('display', 'none');
@@ -49,7 +49,7 @@ function deleteHeadline(){
 }
 
 
-//подключение Google Maps
+// подключение Google Maps
 window.initMap = function() {
     var customMapType = new google.maps.StyledMapType([
     {
@@ -111,7 +111,7 @@ $(document).ready(function() {
         changeNavbar();
     });
 
-    //кнопка back-to-top
+    // кнопка back-to-top
     var offset = 300, scrollDuration = 700, backToTop = $('.back-to-top');
 
     $(window).scroll(function(){
