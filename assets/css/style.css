@@ -163,6 +163,35 @@ nav li{
     top: 30%;
 }
 
+@media (max-width: 992px) {
+    .headline-form{
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .headline-form{
+        top: 20%;
+    }
+}
+
+@media (max-width: 478px) {
+    .headline-form{
+        top: 15%;
+    }
+}
+
+/*.headline{*/
+    /*position: absolute;*/
+    /*top: 30%;*/
+/*}*/
+
+/*.form{*/
+    /*position: absolute;*/
+    /*top: 30%;*/
+    /*right: 10%;*/
+/*}*/
+
 .form-control {
     height: 50px;
     font-size: 14px;
@@ -172,14 +201,6 @@ nav li{
     box-shadow: none;
     border-radius: 0;
     padding-left: 15px;
-}
-
-#error{
-    display: none;
-    color: #e54e46;
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 15px;
 }
 
 
@@ -256,7 +277,7 @@ textarea.form-control {
 
 
 /*------------------------------------------------------------------
-  	VIDEO BACKGROUND / IMAGE
+  	VIDEO BACKGROUND / IMAGE BACKGROUND
 ------------------------------------------------------------------*/
 
 .video-bg{
@@ -581,17 +602,10 @@ textarea.form-control {
     font-size: 40px;
 }
 
-
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     color: #515769;
     margin: 0 0 15px;
-}
-
-@media (max-width: 768px) {
-    h2 {
-        margin: 0;
-    }
 }
 
 
@@ -636,6 +650,42 @@ span {
 }
 
 
+@media (max-width: 1200px) {
+    .h1-home {
+        font-size: 70px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .h1-home {
+        font-size: 60px;
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+}
+
+/*@media (max-width: 576px) {*/
+    /*.h1-home {*/
+        /*font-size: 50px;*/
+    /*}*/
+    /*.p-home{*/
+        /*font-size: 15px;*/
+    /*}*/
+/*}*/
+
+@media (max-width: 400px) {
+    .h1-home {
+        font-size: 50px;
+    }
+    .p-home{
+        font-size: 15px;
+    }
+}
+
 /*------------------------------------------------------------------
   	MAIN COLORS
 ------------------------------------------------------------------*/
@@ -670,7 +720,7 @@ span {
 ------------------------------------------------------------------*/
 
 .margin-b-0{
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .margin-b-2{
@@ -689,6 +739,14 @@ span {
     margin-bottom: 30px;
 }
 
+/*.margin-t{*/
+    /*margin-top: calc(80vmin / 2 - 80px);*/
+/*}*/
+
+/*@media (max-width: 768px) {*/
+
+/*}*/
+
 .margin-l-20{
     margin-left: 20px;
 }
@@ -697,6 +755,13 @@ span {
     margin-right: 10px;
 }
 
+
+
+@media (max-width: 992px) {
+    .md-margin-b-10 {
+        margin-bottom: 10px !important;
+    }
+}
 
 @media (max-width: 768px) {
     .sm-margin-b-0 {
@@ -710,8 +775,8 @@ span {
     }
 }
 
-@media (max-width: 992px) {
-    .md-margin-b-10 {
+@media (max-width: 576px) {
+    .xs-margin-b-10 {
         margin-bottom: 10px !important;
     }
 }

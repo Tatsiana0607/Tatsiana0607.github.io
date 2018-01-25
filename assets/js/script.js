@@ -26,7 +26,7 @@ function changeNavbar() {
 
 //отключение фонового видео для мобильных устройств
 function disableVideo(){
-    if (window.matchMedia("(max-width: 576px)").matches) {
+    if (window.matchMedia("(max-width: 768px)").matches) {
         $('.video-wrap').css('display', 'none');
         $('.img-mobile').css('display', 'block');
     }
