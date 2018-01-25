@@ -671,14 +671,14 @@ span {
     }
 }
 
-@media (max-width: 400px) {
-    .h1-home {
-        font-size: 30px;
-    }
-    .p-home{
-        font-size: 14px;
-    }
-}
+/*@media (max-width: 400px) {*/
+    /*.h1-home {*/
+        /*font-size: 30px;*/
+    /*}*/
+    /*.p-home{*/
+        /*font-size: 14px;*/
+    /*}*/
+/*}*/
 
 /*------------------------------------------------------------------
   	MAIN COLORS
