@@ -680,7 +680,7 @@ h3, h4 {
     font-size: 18px;
 }
 
-p {
+p{
     font-size: 15px;
     font-weight: 400;
     color: #a6a7aa;
@@ -695,6 +695,10 @@ span {
 
 .f-weight-700{
     font-weight: 700;
+}
+
+.exit{
+    font-size: 35px;
 }
 
 @media (max-width: 1200px) {
