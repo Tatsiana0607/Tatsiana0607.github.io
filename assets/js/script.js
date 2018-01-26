@@ -26,6 +26,7 @@ function changeNavbar() {
     }
 }
 
+
 // подключение Google Maps
 window.initMap = function() {
     var customMapType = new google.maps.StyledMapType([
@@ -74,7 +75,6 @@ window.initMap = function() {
     map.mapTypes.set(customMapTypeId, customMapType);
     map.setMapTypeId(customMapTypeId);
 }
-
 
 
 $(document).ready(function() {
