@@ -5,7 +5,7 @@ $(window).on('load', function () {
         $spinner   = $preloader.find('.spinner');
     $spinner.fadeOut();
     $preloader.delay(200);
-    $('html').removeClass('hide-scrollbar');
+    $('body').removeClass('loading');
     $preloader.fadeOut(500);
 });
 
