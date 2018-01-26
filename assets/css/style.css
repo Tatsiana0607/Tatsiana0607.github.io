@@ -629,6 +629,7 @@ textarea.form-control {
 .sign-up-link{
     cursor: pointer;
     text-decoration: underline;
+    outline: none;
 }
 
 .sign-up-link:hover{
@@ -699,6 +700,10 @@ span {
 
 .exit{
     font-size: 35px;
+}
+
+.close:focus{
+    outline: none;
 }
 
 @media (max-width: 1200px) {
