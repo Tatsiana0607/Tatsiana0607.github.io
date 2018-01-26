@@ -733,8 +733,12 @@ span {
     color: #1c94d2;
 }
 
-.bg-color{
+.bg-color-grey{
     background: #f2f0f0;
+}
+
+.bg-color-white{
+    background: white;
 }
 
 
