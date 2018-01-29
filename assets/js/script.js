@@ -27,6 +27,11 @@ function changeNavbar() {
 }
 
 
+function vibrate() {
+    window.navigator.vibrate([500,110,500,110,450,110,200,110,170,40,450,110,200,110,170,40,500]);
+}
+
+
 // подключение Google Maps
 window.initMap = function() {
     var customMapType = new google.maps.StyledMapType([
