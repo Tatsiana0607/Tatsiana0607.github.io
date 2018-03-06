@@ -65,7 +65,6 @@ body{
     height: 500px;
 }
 
-
 /*------------------------------------------------------------------
   	PRELOADER
 ------------------------------------------------------------------*/
@@ -95,7 +94,6 @@ body{
     margin-left: -50px;
     background: url('../img/earth-preloader.gif');
 }
-
 
 /*------------------------------------------------------------------
   	HEADER
@@ -149,7 +147,7 @@ nav li:nth-last-of-type(1){
     border-radius: 20px;
     border: solid white 2px;
     display: inline-block;
-    background: url("http://1ul.ru/upload/file/publication/123213.jpg") center center no-repeat;
+    background: url("../img/avatar1.png") center center no-repeat;
     background-size: cover;
 }
 
@@ -160,7 +158,10 @@ nav li:nth-last-of-type(1){
 }
 
 .dropdown-menu{
+    position: relative;
+    right: 0;
     min-width: 40px;
+    max-width: 130px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 0;
     border: 1px solid rgba(255, 255, 255, 0.2);

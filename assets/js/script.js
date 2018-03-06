@@ -9,23 +9,22 @@ $(window).on('load', function () {
     $preloader.fadeOut(500);
 });
 
-
 // изменение меню при прокрутке и на средних и малых устройствах
 function changeNavbar() {
     if ($(window).scrollTop() > 50 || window.matchMedia("(max-width: 991px)").matches) {
         $('.logo-img-active').css('display', 'inline-block');
         $('.logo-img-main').css('display', 'none');
         $('.navbar').css('background', 'white').css('border-bottom', 'none').css('box-shadow', '0px 0px 8px lightgrey');
-        $('.dropdown-divider').css('display', 'none');
+        $('.dropdown-divider').css('border-top', '1px solid rgba(0, 0, 0, 0.1)');
         $('.profile-photo').css('border', '2px solid #515769');
-        $('.dropdown-menu').css('background', 'rgba(255, 255, 255, 1)').css('border', '1px solid rgba(0, 0, 0, 0.2)');
+        $('.dropdown-menu').css('background', 'rgba(255, 255, 255, 1)').css('border', '1px solid rgba(0, 0, 0, 0.1)');
         $('nav ul li a').removeClass('color-white').addClass('color-heading');
     }
     else {
         $('.logo-img-active').css('display', 'none');
         $('.logo-img-main').css('display', 'inline-block');
         $('.navbar').css('background', 'transparent').css('box-shadow', 'none');
-        $('.dropdown-divider').css('display', 'block');
+        $('.dropdown-divider').css('border-top', '1px solid rgba(255, 255, 255, 0.2)');
         $('.profile-photo').css('border', 'solid white 2px');
         $('.dropdown-menu').css('background', 'rgba(255, 255, 255, 0.2)').css('border', '1px solid rgba(255, 255, 255, 0.2)');
         $('nav ul li a').removeClass('color-heading').addClass('color-white');
@@ -104,3 +103,6 @@ $(document).ready(function() {
         $('body,html').animate({scrollTop: 0}, scrollDuration);
     });
 });
+
+
+
