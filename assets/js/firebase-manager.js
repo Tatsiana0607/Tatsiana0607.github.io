@@ -31,8 +31,8 @@ let vueApp = new Vue({
             return URL_TOURS_IMAGES.child(image+'.jpg').getDownloadURL()
                 .then((url) => {
                     console.log(url);
-                    return url;
-                    // document.getElementById('_'+image).src = url;
+                    // return url;
+                    document.getElementById('_'+image).src = url;
             }).catch((err) => {
                 console.log('Error', err.message);
             });
