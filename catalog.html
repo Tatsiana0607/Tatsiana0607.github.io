@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
     <link rel="stylesheet" href="assets/css/style.css"/>
     <link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon">
+
 </head>
 <body>
 
@@ -97,116 +98,25 @@
                     </div>
                 </div>
 
-                <div class="row row-space-1">
-
-                    <div class="col-lg-4 col-md-6 sm-margin-b-4">
+                <div id="catalog" class="row row-space-1">
+                    <div v-for="tour in tours" class="col-lg-4 col-md-6 sm-margin-b-4">
                         <div class="wow fadeInUp" data-wow-delay=".1s">
                             <div class="tour">
-                                <img class="img-fluid margin-b-20" src="assets/img/catalog/01.jpg" title="Заполярная Норвегия" alt="Catalog Image">
+                                <img class="myimg img-fluid margin-b-20" src="assets/img/catalog/01.jpg" :title="tour.name" alt="Catalog Image">
                                 <div class="margin-b-10">
-                                    <h3 class="margin-b-2"><a href="construction.html" title="Заполярная Норвегия">Заполярная Норвегия</a></h3>
-                                    <span>Стоимость 1675 BYN</span>
+                                    <h3 class="margin-b-2"><a href="construction.html" :title="tour.name">{{tour.name}}</a></h3>
+                                    <span><strong class="color-link">Стоимость: </strong>{{tour.price}} BYN</span><br>
+                                    <span><strong class="color-link">Длительность: </strong>{{tour.duration}}</span>
                                 </div>
                                 <ul class="list-unstyled margin-b-20">
-                                    <li class="tour-feature">Мыс Норд Кап</li>
-                                    <li class="tour-feature">Рыбалка в водах Страумс-фьорда</li>
-                                    <li class="tour-feature">Птичье сафари</li>
-                                </ul>
-                                <button class="button">Подробнее</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 sm-margin-b-4">
-                        <div class="wow fadeInUp" data-wow-delay=".2s">
-                            <div class="tour">
-                                <img class="img-fluid margin-b-20" src="assets/img/catalog/02.jpg" title="Каникулы в Лапландии" alt="Catalog Image">
-                                <div class="margin-b-10">
-                                    <h3 class="margin-b-2"><a href="construction.html" title="Каникулы в Лапландии">Каникулы в Лапландии</a></h3>
-                                    <span>Стоимость 672 BYN</span>
-                                </div>
-                                <ul class="list-unstyled margin-b-20">
-                                    <li class="tour-feature">Деревня Санта Клауса</li>
-                                    <li class="tour-feature">Наблюдение полярного сияния</li>
-                                    <li class="tour-feature">Катание на северных оленях и хаски</li>
-                                </ul>
-                                <button class="button">Подробнее</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 sm-margin-b-4">
-                        <div class="wow fadeInUp" data-wow-delay=".3s">
-                            <div class="tour">
-                                <img class="img-fluid margin-b-20" src="assets/img/catalog/03.jpg" title="Круиз в Швецию" alt="Catalog Image">
-                                <div class="margin-b-10">
-                                    <h3 class="margin-b-2"><a href="construction.html" title="Круиз в Швецию">Круиз в Швецию</a></h3>
-                                    <span>Стоимость 207 BYN</span>
-                                </div>
-                                <ul class="list-unstyled margin-b-20">
-                                    <li class="tour-feature">Паром высшего класса Viking Line</li>
-                                    <li class="tour-feature">Стокгольмские шхеры</li>
-                                    <li class="tour-feature">Музей под открытым небом Скансен</li>
-                                </ul>
-                                <button class="button">Подробнее</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="wow fadeInUp" data-wow-delay=".3s">
-                            <div class="tour">
-                                <img class="img-fluid margin-b-20" src="assets/img/catalog/04.jpg" title="Исландия: лед и пламя" alt="Catalog Image">
-                                <div class="margin-b-10">
-                                    <h3 class="margin-b-2"><a href="construction.html" title="Исландия: лед и пламя">Исландия: лед и пламя</a></h3>
-                                    <span>Стоимость 1830 BYN</span>
-                                </div>
-                                <ul class="list-unstyled margin-b-20">
-                                    <li class="tour-feature">Обзорная экскурсия по Рейкьявику</li>
-                                    <li class="tour-feature">Посещение горячих источников</li>
-                                    <li class="tour-feature">Круиз по лагуне Йокульсарлон</li>
-                                </ul>
-                                <button class="button">Подробнее</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 sm-margin-b-4">
-                        <div class="wow fadeInUp" data-wow-delay=".5s">
-                            <div class="tour">
-                                <img class="img-fluid margin-b-20" src="assets/img/catalog/05.jpg" title="Таинственная Дания" alt="Catalog Image">
-                                <div class="margin-b-10">
-                                    <h3 class="margin-b-2"><a href="construction.html" title="Таинственная Дания">Таинственная Дания</a></h3>
-                                    <span>Стоимость 569 BYN</span>
-                                </div>
-                                <ul class="list-unstyled margin-b-20">
-                                    <li class="tour-feature">Обзорная экскурсия по Копенгагену</li>
-                                    <li class="tour-feature">Выезд на скалы Stevns Klint</li>
-                                    <li class="tour-feature">Посещение оленьего парка</li>
-                                </ul>
-                                <button class="button">Подробнее</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="wow fadeInUp" data-wow-delay=".6s">
-                            <div class="tour">
-                                <img class="img-fluid margin-b-20" src="assets/img/catalog/06.jpg" title="Зимняя Карелия" alt="Catalog Image">
-                                <div class="margin-b-10">
-                                    <h3 class="margin-b-2"><a href="construction.html" title="Зимняя Карелия">Зимняя Карелия</a></h3>
-                                    <span>Стоимость 625 BYN</span>
-                                </div>
-                                <ul class="list-unstyled margin-b-20">
-                                    <li class="tour-feature">Карельское поместье Деда Халла</li>
-                                    <li class="tour-feature">Посещение древнего вулкана Гирвас</li>
-                                    <li class="tour-feature">Поездка на остров Кижи</li>
+                                    <li v-for="desc in tour.description" class="tour-feature">{{desc}}</li>
                                 </ul>
                                 <button class="button">Подробнее</button>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         <!-- End Catalog -->
@@ -279,12 +189,15 @@
     <a href="#" class="back-to-top">&uparrow;</a>
 
     <!------------------ SCRIPTS -------------------->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="assets/js/jquery-ui.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/parallax.min.js"></script>
     <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/firebase-manager.js"></script>
 
     <script>
         var wow = new WOW(
