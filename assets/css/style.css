@@ -353,7 +353,12 @@ nav li:nth-last-of-type(1){
 }
 
 .search .footer-input{
-    background: rgba(0, 0, 0, 0.1);
+    background: #f6f6f6;
+    border: 1px solid #c5c5c5;
+}
+
+.search .footer-input:hover{
+    background: #e5e5e5;
 }
 
 textarea.form-control {
@@ -508,6 +513,25 @@ textarea.form-control {
 /*------------------------------------------------------------------
   	CATALOG
 ------------------------------------------------------------------*/
+
+label{
+    margin-right: 10px !important;
+    color: #798188 !important;
+}
+label.ui-state-active, label:active{
+    color: white !important;
+}
+
+.ui-icon {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+label[for^=items].ui-state-active .ui-icon-background{
+    border: 4px solid white;
+    background-color: #6282a3 !important;
+}
+
 
 .tour {
     padding: 40px 45px;

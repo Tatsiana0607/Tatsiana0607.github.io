@@ -102,6 +102,21 @@ $(document).ready(function() {
         event.preventDefault();
         $('body,html').animate({scrollTop: 0}, scrollDuration);
     });
+
+    //компоненты jQuery UI
+    $('#price-slider').slider( { min: 100, max: 3000, step:10, animate: 500, range: true, values:[100,3000],slide: printValues, change: printValues } );
+    $('#duration-slider').slider( { min: 1, max: 30, step:1, animate: 500, range: true, values:[1,30],slide: printValues, change: printValues } );
+
+    function printValues()
+    {
+        $('#price').text( 'от '+$('#price-slider').slider('values',0) + ' до ' + $('#price-slider').slider('values',1)+' BYN' );
+        $('#duration').text( 'от '+$('#duration-slider').slider('values',0) + ' до ' + $('#duration-slider').slider('values',1)+' дней' );
+    }
+    printValues();
+
+    $('#country').controlgroup();
+    $('#pagination').controlgroup();
+
 });
 
 

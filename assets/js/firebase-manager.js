@@ -9,11 +9,21 @@ const config = {
 };
 firebase.initializeApp(config);
 
-const URL_TOURS_DATA ="https://polar-star.firebaseio.com/tours.json";
+let URL_TOURS_DATA ="https://polar-star.firebaseio.com/tours.json";
 
 let vueApp = new Vue({
     el: '#catalog',
     data: {
+        search: '',
+        countries: [
+            {id: 'norway', value: 'Норвегия', status: false},
+            {id: 'finland', value: 'Финляндия', status: false},
+            {id: 'russia', value: 'Росиия', status: false},
+            {id: 'usa', value: 'США', status: false},
+            {id: 'canada', value: 'Канада', status: false},
+            {id: 'iceland', value: 'Исландия', status: false},
+            {id: 'sweden', value: 'Швеция', status: false},
+            {id: 'denmark', value: 'Дания', status: false}],
         tours: []
     },
     methods: {
@@ -25,6 +35,11 @@ let vueApp = new Vue({
             }).catch((err) => {
                 console.log('Error', err.message);
             })
+        },
+        changeCheckboxURL: function (event) {
+            if (event) {
+                console.log(event.target.id);
+            }
         }
     },
     created: function () {
