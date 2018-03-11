@@ -532,6 +532,13 @@ label[for^=items].ui-state-active .ui-icon-background{
     background-color: #6282a3 !important;
 }
 
+[id=sort-button]{
+    width: 160px !important;
+}
+
+.ui-selectmenu-text{
+    color: #798188 !important;
+}
 
 .tour {
     padding: 40px 45px;
