@@ -527,7 +527,7 @@ label.ui-state-active, label:active{
     height: 16px !important;
 }
 
-label[for^=items].ui-state-active .ui-icon-background{
+label[for^=page].ui-state-active .ui-icon-background{
     border: 4px solid white;
     background-color: #6282a3 !important;
 }
@@ -538,6 +538,34 @@ label[for^=items].ui-state-active .ui-icon-background{
 
 .ui-selectmenu-text{
     color: #798188 !important;
+}
+
+.page-item{
+    padding: 2px;
+}
+
+.page-link{
+    border-radius: 0 !important;
+    color: #798188;
+}
+
+.page-link:hover{
+    color: #798188;
+    background-color: #f6f6f6;
+}
+
+.disabled{
+    color: #bfc1c7;
+}
+
+.disabled:hover{
+    background-color: white;
+    color: #bfc1c7;
+}
+
+.page-item.active .page-link{
+    background-color: #6282a3;
+    border: 1px solid #6282a3;
 }
 
 .tour {

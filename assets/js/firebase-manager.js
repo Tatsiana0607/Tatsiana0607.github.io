@@ -28,6 +28,12 @@ let vueApp = new Vue({
             {value: 'price', text: 'по цене'},
             {value: 'days', text: 'по длительности'}
         ],
+        pagination:[
+            {value: 3, text: 'по 3'},
+            {value: 6, text: 'по 6'},
+            {value: 9, text: 'по 9'}
+        ],
+        selected:'',
         tours: [],
         search: '',
         dateValues: {start:'', end:''},
@@ -35,6 +41,10 @@ let vueApp = new Vue({
         durationValues:{min: 0, max: 0},
         sorting: '',
         checkedCountries: [],
+        totalTours: 0,
+        toursPerPage: 3,
+        numberOfPages: 0,
+        currentPage: 1
     },
     methods: {
         getToursData: function () {
@@ -46,6 +56,9 @@ let vueApp = new Vue({
                 console.log('Error', err.message);
             })
         },
+        goToPage: function (page) {
+            this.currentPage=page;
+        }
     },
     computed:{
         filteredTours: function(){
@@ -78,6 +91,8 @@ let vueApp = new Vue({
                     return 0;
                 });
             }
+            this.totalTours = filtered.length;
+            this.numberOfPages = Math.ceil(filtered.length/this.toursPerPage);
             return filtered;
         },
     },
@@ -98,15 +113,15 @@ let vueApp = new Vue({
     mounted: function () {
         let vm = this;
         $('#date-start').datepicker({
-            onSelect: function(date) {
+            onSelect: function (date) {
                 vm.dateValues.start = date;
             }
         });
         $('#date-end').datepicker({
-            onSelect: function(date) {
+            onSelect: function (date) {
                 vm.dateValues.end = date;
             }
-        })
+        });
     }
 });
 
@@ -129,8 +144,8 @@ printValues();
 
 $('#country').controlgroup();
 $('#pagination').controlgroup();
-$('#sort').selectmenu({change:changed});
+$('#sort').selectmenu({change:changeSelect});
 
-function changed(event,ui) {
+function changeSelect(event,ui) {
     vueApp.sorting = ui.item.value;
 }
