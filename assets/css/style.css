@@ -243,7 +243,7 @@ nav li:nth-last-of-type(1){
 
 /* Form */
 
-.form-control {
+.form-control, .form-control-sm {
     height: 50px;
     font-size: 14px;
     font-weight: 400;
@@ -254,13 +254,15 @@ nav li:nth-last-of-type(1){
     padding-left: 15px;
 }
 
+.form-control-sm{
+    height: 40px;
+}
+
 @media (max-width: 576px) {
     .form-control {
         height: 40px;
-        font-size: 12px;
     }
 }
-
 
 /*------------------------------------------------------------------
   	VIDEO BACKGROUND / IMAGE BACKGROUND
@@ -305,7 +307,7 @@ nav li:nth-last-of-type(1){
 
 
 /*------------------------------------------------------------------
-  	PARALLAX
+  	TITLE BACKGROUND
 ------------------------------------------------------------------*/
 
 .parallax-content {
@@ -313,6 +315,10 @@ nav li:nth-last-of-type(1){
     padding-bottom: 120px;
 }
 
+.tour-main-content {
+    padding-top: 190px;
+    padding-bottom: 110px;
+}
 
 /*------------------------------------------------------------------
   	FOOTER
@@ -352,16 +358,21 @@ nav li:nth-last-of-type(1){
     color: #ffffff;
 }
 
-.search .footer-input{
+.search .search-input,
+.modal-input{
     background: #f6f6f6;
     border: 1px solid #c5c5c5;
+    height: 30px;
+    padding-left: 10px;
 }
 
-.search .footer-input:hover{
+.search .search-input:hover,
+.modal-input:hover{
     background: #e5e5e5;
 }
 
-textarea.form-control {
+textarea.form-control,
+textarea.form-control-sm{
     height: auto;
 }
 
@@ -466,13 +477,19 @@ textarea.form-control {
     padding: 40px;
 }
 
+.service{
+    background: #fff;
+    padding: 30px;
+}
+
 @media (max-width: 768px) {
     .advantage, .question {
         padding: 30px;
     }
 }
 
-.advantage-icon {
+.advantage-icon,
+.service-icon{
     display: block;
     font-size: 30px;
     color: #999caa;
@@ -482,13 +499,19 @@ textarea.form-control {
     transition: .3s all;
 }
 
-.advantage-info {
+.service-icon{
+    font-size: 35px;
+}
+
+.advantage-info,
+.service-info{
     -webkit-transition: .3s all;
     -o-transition: .3s all;
     transition: .3s all;
 }
 
-.advantage:hover .advantage-icon {
+.advantage:hover .advantage-icon,
+.service:hover .service-icon{
     opacity: 0;
     -webkit-transform: translateY(-100%);
     -moz-transform: translateY(-100%);
@@ -499,7 +522,8 @@ textarea.form-control {
     transition: .3s all;
 }
 
-.advantage:hover .advantage-info {
+.advantage:hover .advantage-info,
+.service:hover .service-info{
     -webkit-transform: translateY(-23%);
     -moz-transform: translateY(-23%);
     -ms-transform: translateY(-23%);
@@ -574,7 +598,7 @@ label[for^=page].ui-state-active .ui-icon-background{
     margin-top: 2px;
 }
 
-.tour-feature {
+.tour-feature, .tour-details {
     position: relative;
     font-size: 13px;
     color: #81848f;
@@ -582,7 +606,12 @@ label[for^=page].ui-state-active .ui-icon-background{
     margin-bottom: 10px;
 }
 
-.tour-feature:before {
+.tour-details{
+    font-size: 14px;
+}
+
+.tour-feature:before,
+.tour-details:before{
     position: absolute;
     top: 7px;
     left: 0;
@@ -606,18 +635,59 @@ label[for^=page].ui-state-active .ui-icon-background{
 
 
 /*------------------------------------------------------------------
+  	ADMIN
+------------------------------------------------------------------*/
+
+.table td, .table th{
+    border-bottom: 1px solid #7f8387;
+    border-top: 0;
+}
+
+.table-success, .table-success th, .table-success td{
+    background-color: rgba(220, 255, 228, 0.31);
+}
+
+.table-danger, .table-danger th, .table-danger td{
+    background-color: rgba(255, 208, 213, 0.31);
+}
+
+.modal-content{
+    border-radius: 0;
+}
+
+.modal-footer, .modal-header{
+    padding: 1rem 2rem;
+}
+
+.hide{
+    display: none;
+}
+
+.ui-selectmenu-open {
+    z-index:9999;
+}
+
+/*------------------------------------------------------------------
   	BUTTON STYLES
 ------------------------------------------------------------------*/
 
-.button{
+.button, .disabled-button{
     padding: 15px 30px;
     border-width: 0;
     font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
     color: #fff;
+}
+
+.button{
     background: #6282a3;
     cursor: pointer;
+}
+
+.disabled-button,
+.disabled-button:hover {
+    background-color: rgba(98, 130, 163, 0.62);
 }
 
 .button:hover, .button:focus, .button:active {
@@ -735,6 +805,20 @@ label[for^=page].ui-state-active .ui-icon-background{
 
 .sign-up-link:hover{
     color: #45607d;
+}
+
+.button-link,
+.button-link:hover{
+    color: white;
+    text-decoration: none;
+}
+
+.icon-link,
+.icon-link:hover,
+.icon-link:focus{
+    color: black;
+    text-decoration: none;
+    outline: none;
 }
 
 
