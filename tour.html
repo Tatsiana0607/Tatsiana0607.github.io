@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <title>Турфирма Polar Star - Тур</title>
+    <title>Турфирма Polar Star</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -75,13 +75,13 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-6 pricing">
-                            <ul class="list-unstyled pricing-list margin-b-0">
+                        <div class="col-xl-6 col-lg-6 col-md-12 margin-b-30">
+                            <ul class="list-unstyled margin-b-0">
                                 <li v-for="detail in tour.details" class="tour-details" >{{detail}}</li>
                             </ul>
                         </div>
-                        <div class="col-sm-6 sm-margin-b-0 margin-t-30">
-                            <iframe width="600" height="340" :src="tour.video" frameborder="0" allowfullscreen></iframe>
+                        <div class="col-xl-6 col-lg-6 col-md-12 sm-margin-b-0 margin-t-30">
+                            <iframe width="550" height="300" :src="tour.video" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -215,17 +215,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/firebase-manager.js"></script>
-
-    <script>
-        var wow = new WOW(
-                {
-                    mobile: false,
-                    tablet: false
-                }
-        );
-        wow.init();
-
-    </script>
+    <script src="assets/js/tour-vue.js"></script>
 
 </body>
 </html>

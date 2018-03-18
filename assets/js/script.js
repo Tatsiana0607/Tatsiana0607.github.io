@@ -1,4 +1,13 @@
 ﻿
+//инициализация WOW
+var wow = new WOW(
+    {
+        mobile: false,
+        tablet: false
+    }
+);
+wow.init();
+
 // прелоадер
 $(window).on('load', function () {
     var $preloader = $('#page-preloader'),
@@ -84,7 +93,11 @@ window.initMap = function() {
 
 $(document).ready(function() {
     changeNavbar();
-    $(window).scroll(changeNavbar);
+    showButton();
+    $(window).scroll(function(){
+        changeNavbar();
+        showButton();
+    });
     $(window).resize(function () {
         changeNavbar();
     });
@@ -105,4 +118,29 @@ $(document).ready(function() {
 });
 
 
+function showButton() {
+    if ($(window).scrollTop() > 200 && $(window).scrollTop() < $('body').height()-1000) {
+        $('#open-btn').css('opacity','1');
+    }
+    else {
+        $('#open-btn').css('opacity','0');
+    }
+}
 
+
+function toggleSidebar() {
+    if(document.getElementById("mySidenav").style.width === "300px"){
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("catalog").style.marginLeft= "0";
+        document.getElementById("open-btn").style.marginLeft = "0";
+        $('.fa-caret-right').removeClass('hide');
+        $('.fa-caret-left').addClass('hide');
+    }
+    else{
+        document.getElementById("mySidenav").style.width = "300px";
+        document.getElementById("catalog").style.marginLeft = "300px";
+        document.getElementById("open-btn").style.marginLeft = "300px";
+        $('.fa-caret-right').addClass('hide');
+        $('.fa-caret-left').removeClass('hide');
+    }
+}

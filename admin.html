@@ -61,45 +61,47 @@
 
         <div class="bg-color-white">
             <div class="content-padding container">
+
                 <div class="row">
-                    <div class="col-sm-12">
-
-                        <div class="row margin-b-20">
-                            <div class="col-sm-12">
-                                <h2>Список туров</h2>
-                            </div>
-                        </div>
-
-                        <table class="table table-hover table-responsive-lg">
-                            <tr>
-                                <th class="text-center" scope="col">№</th>
-                                <th class="text-center" scope="col">Название</th>
-                                <th class="text-center" scope="col">Страна назначения</th>
-                                <th class="text-center" scope="col">Цена в BYN</th>
-                                <th class="text-center" scope="col">Дата выезда</th>
-                                <th class="text-center" scope="col">Длительность</th>
-                                <th class="text-center" scope="col">Карточка</th>
-                                <th class="text-center" scope="col">Описание</th>
-                                <th class="text-center" scope="col">Удалить</th>
-                            </tr>
-                            <template v-for="(tour,i) in tours">
-                                <tr :class="hasDescription(tour) ? 'table-success' : 'table-danger'" >
-                                    <td>{{i+1}}</td>
-                                    <td>{{tour.name}}</td>
-                                    <td class="text-center">{{getCountryById(tour.country)}}</td>
-                                    <td class="text-center">{{tour.price}}</td>
-                                    <td class="text-center">{{tour.date}}</td>
-                                    <td class="text-center">{{tour.duration}}</td>
-                                    <td class="text-center"><a class="icon-link" @click="getTourByNumber(i)" href="#myModalEditCard" data-toggle="modal"><i class="far fa-edit"></i></a></td>
-                                    <td class="text-center" v-if="hasDescription(tour)"><a class="icon-link" href="#myModalEditDescription" data-toggle="modal"><i class="far fa-edit"></i></a></td>
-                                    <td class="text-center" v-else><a class="icon-link" @click="switchModal('.first', ['.second', '.third']);" href="#myModalAddDescription" data-toggle="modal"><i class="far fa-plus-square"></i></a></td>
-                                    <td class="text-center"><a class="icon-link" @click="getTourByNumber(i)" href="#myModalDelete" data-toggle="modal"><i class="far fa-trash-alt"></i></a></td>
-                                </tr>
-                            </template>
-                        </table>
-                        <button class="btn"><a href="#myModalAddСard" data-toggle="modal">Добавить новый тур <i class="fas fa-plus-circle"></i></a></button>
+                    <div class="col-lg-3 md-margin-b-10 sm-margin-b-10">
+                        <h2>Список туров</h2>
+                    </div>
+                    <div id="fullness" class="col-lg-9 col-md-12 col-sm-12 col-12">
+                        <span v-for="item in fullness">
+                            <input :id="'item'+item.value" type="checkbox" :value="item.value" v-model="checkedFullness">
+                            <label :for="'item'+item.value">{{item.text}}</label>
+                        </span>
                     </div>
                 </div>
+
+                <table class="table table-hover table-responsive-lg">
+                    <tr>
+                        <th class="text-center" scope="col">№</th>
+                        <th class="text-center" scope="col">Название</th>
+                        <th class="text-center" scope="col">Страна назначения</th>
+                        <th class="text-center" scope="col">Цена в BYN</th>
+                        <th class="text-center" scope="col">Дата выезда</th>
+                        <th class="text-center" scope="col">Длительность</th>
+                        <th class="text-center" scope="col">Карточка</th>
+                        <th class="text-center" scope="col">Описание</th>
+                        <th class="text-center" scope="col">Удалить</th>
+                    </tr>
+                    <template v-for="(tour,i) in filteredTours">
+                        <tr :class="'table-'+hasDescription(tour)">
+                            <td>{{i+1}}</td>
+                            <td>{{tour.name}}</td>
+                            <td class="text-center">{{getCountryById(tour.country)}}</td>
+                            <td class="text-center">{{tour.price}}</td>
+                            <td class="text-center">{{tour.date}}</td>
+                            <td class="text-center">{{tour.duration}}</td>
+                            <td class="text-center"><a class="icon-link" @click="getTourInfo(tour.uid)" href="#myModalEditCard" data-toggle="modal"><i class="far fa-edit"></i></a></td>
+                            <td class="text-center" v-if="hasDescription(tour)==='danger'"><a class="icon-link" @click="switchModal('.first', ['.second', '.third']); getTourInfo(tour.uid);" href="#myModalAddDescription" data-toggle="modal"><i class="far fa-plus-square"></i>&nbsp;</a></td>
+                            <td class="text-center" v-else><a class="icon-link" @click="getTourInfo(tour.uid)" href="#myModalEditDescription" data-toggle="modal"><i class="far fa-edit"></i></a></td>
+                            <td class="text-center"><a class="icon-link" @click="getTourInfo(tour.uid)" href="#myModalDelete" data-toggle="modal"><i class="far fa-trash-alt"></i></a></td>
+                        </tr>
+                    </template>
+                </table>
+                <button class="btn btn-success" href="#myModalAddСard" data-toggle="modal" @click="clearInfo();">Добавить новый тур</button>
             </div>
         </div>
 
@@ -118,9 +120,25 @@
                     <div class="modal-body">
                         <div class="container-fluid">
                             <div class="row">
+                                <div class="col-lg-7 col-md-12 col-sm-12 col-12 form-group">
+                                    <label for="name">Фотография для каталога:</label>
+                                    <label class="btn btn-light" for="catalogImg">
+                                        <input id="catalogImg" type="file" class="hide" @change="uploadFile('catalogImg')">
+                                        Выберите файл
+                                    </label>
+                                    <span class="catalog-file-info"></span>
+                                </div>
+                                <div class="col-lg-5">
+                                    <img class="img-fluid" :src="currentTour.catalogImg" @load="$('.overlay').css('opacity', '0');">
+                                    <div class="overlay">
+                                        <i class="file-upload-spinner fas fa-spinner fa-pulse"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                     <label for="name">Название тура:</label>
-                                    <input type="text" class="form-control modal-input" id="name" placeholder="Название">
+                                    <input type="text" class="form-control modal-input" id="name" placeholder="После сохранения изменить название будет невозможно!" v-model="currentTour.name">
                                 </div>
                             </div>
                             <div class="row">
@@ -132,30 +150,30 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
                                     <label for="price">Стоимость:</label>
-                                    <input type="text" class="form-control modal-input" id="price" placeholder="(в BYN)">
+                                    <input type="text" class="form-control modal-input" id="price" placeholder="в BYN" v-model="currentTour.price">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
                                     <label for="date">Дата выезда:</label>
-                                    <input type="text" class="form-control modal-input" id="date" placeholder="">
+                                    <input type="text" class="form-control modal-input" id="date" placeholder="мм/дд/гггг" v-model="currentTour.date">
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
                                     <label for="duration">Длительность:</label>
-                                    <input type="text" class="form-control modal-input" id="duration" placeholder="(в днях)">
+                                    <input type="text" class="form-control modal-input" id="duration" placeholder='Например, "10 дней"' v-model="currentTour.duration">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                     <label for="description">Описание:</label>
-                                    <textarea id="description" class="form-control modal-input" rows="3" placeholder="3 пункта, каждый с новой строки"></textarea>
+                                    <textarea id="description" class="form-control modal-input" rows="3" placeholder="3 пункта, каждый с новой строки" v-model="currentTour.description"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" onclick="addTour();">Добавить тур</button>
+                        <button type="button" class="btn btn-success" @click="addOrEditTourCard();" data-dismiss="modal">Сохранить</button>
                     </div>
 
                 </div>
@@ -169,7 +187,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h4 class="modal-title">Редактирование карточки тура</h4>
+                        <h4 class="modal-title">Редактирование карточки тура &laquo;{{currentTour.name}}&raquo;</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span class="exit color-heading" aria-hidden="true">&times;</span>
                         </button>
@@ -178,20 +196,19 @@
                     <div class="modal-body">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-
-                                    <label class="btn btn-light" for="catalogImg">
-                                        <input id="catalogImg" type="file" style="display:none" onchange="$('#file-info').html(this.files[0].name)">
-                                        Фотография для каталога
+                                <div class="col-lg-7 col-md-12 col-sm-12 col-12 form-group">
+                                    <label>Фотография для каталога:</label>
+                                    <label class="btn btn-light" for="catalogImgNew">
+                                        <input id="catalogImgNew" type="file" class="hide" @change="uploadFile('catalogImgNew');">
+                                        Выберите файл
                                     </label>
-                                    <span class='label label-info' id="file-info"></span>
-
+                                    <span class="catalog-file-info"></span>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-                                    <label for="nameNew">Название тура:</label>
-                                    <input type="text" class="form-control modal-input" id="nameNew" v-model="editTourCard.name">
+                                <div class="col-lg-5 margin-b-20">
+                                    <img class="img-fluid" :src="currentTour.catalogImg" @load="$('.overlay').css('opacity', '0');">
+                                    <div class="overlay">
+                                        <i class="file-upload-spinner fas fa-spinner fa-pulse"></i>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -199,37 +216,37 @@
                                     <label for="destinationNew">Страна назначения:</label>
                                     <select id="destinationNew">
                                         <template v-for="(country,i) in countries">
-                                            <option v-if="editTourCard.country===country.id" selected :value="country.id">{{country.value}}</option>
+                                            <option v-if="currentTour.country===country.id" selected :value="country.id">{{country.value}}</option>
                                             <option v-else :value="country.id">{{country.value}}</option>
                                         </template>
                                     </select>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
                                     <label for="priceNew">Стоимость (в BYN):</label>
-                                    <input type="text" class="form-control modal-input" id="priceNew" v-model="editTourCard.price">
+                                    <input type="text" class="form-control modal-input" id="priceNew" v-model="currentTour.price">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
                                     <label for="dateNew">Дата выезда:</label>
-                                    <input type="text" class="form-control modal-input" id="dateNew" v-model="editTourCard.date">
+                                    <input type="text" class="form-control modal-input" id="dateNew" v-model="currentTour.date">
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
-                                    <label for="durationNew">Длительность (в днях):</label>
-                                    <input type="text" class="form-control modal-input" id="durationNew" v-model="editTourCard.days">
+                                    <label for="durationNew">Длительность:</label>
+                                    <input type="text" class="form-control modal-input" id="durationNew" v-model="currentTour.duration">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                     <label for="descriptionNew">Описание:</label>
-                                    <textarea id="descriptionNew" class="form-control modal-input" rows="3" v-model="editTourCard.description"></textarea>
+                                    <textarea id="descriptionNew" class="form-control modal-input" rows="3" v-model="currentTour.description"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button id="edit-button" type="button" class="btn btn-success" onclick="addTour();">Сохранить изменения</button>
+                        <button id="edit-button" type="button" class="btn btn-success" @click="addOrEditTourCard();" data-dismiss="modal">Сохранить изменения</button>
                     </div>
 
                 </div>
@@ -237,156 +254,6 @@
         </div>
         <!--End Modal Edit Card-->
 
-        <!-- Modal Add Description-->
-        <div id="myModalAddDescription" class="modal fade">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h4 class="modal-title">Добавление описания тура</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span class="exit color-heading" aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="first">
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                                <h5>Общие сведения</h5>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
-                                        <label for="mainImg">Фотография для фона:</label>
-                                        <input type="file" id="mainImg">
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
-                                        <label for="video">Видео:</label>
-                                        <input type="text" class="form-control modal-input" id="video" placeholder="URL видео">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-                                        <label for="details">Подробнее о туре:</label>
-                                        <textarea id="details" class="form-control modal-input" rows="10"
-                                                  placeholder="Несколько абзацев, каждый с новой строки"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" @click="switchModal('.second', ['.first', '.third']);">Далее <i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-
-                    <div class="second hide">
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                                <h5>Сервисы</h5>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 form-group">
-                                        <select id="service-icon1" class="form-control modal-input">
-                                        </select>
-                                        <input type="text" class="form-control modal-input" id="service-name1" placeholder="Название сервиса">
-                                        <textarea id="service-description1" class="form-control modal-input" rows="2" placeholder="Пару слов о сервисе"></textarea>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 form-group">
-                                        <select id="service-icon2" class="form-control modal-input">
-                                        </select>
-                                        <input type="text" class="form-control modal-input" id="service-name2" placeholder="Название сервиса">
-                                        <textarea id="service-description2" class="form-control modal-input" rows="2" placeholder="Пару слов о сервисе"></textarea>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 form-group">
-                                        <select id="service-icon3" class="form-control modal-input">
-                                        </select>
-                                        <input type="text" class="form-control modal-input" id="service-name3" placeholder="Название сервиса">
-                                        <textarea id="service-description3" class="form-control modal-input" rows="2" placeholder="Пару слов о сервисе"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 form-group">
-                                        <select id="service-icon4" class="form-control modal-input">
-                                        </select>
-                                        <input type="text" class="form-control modal-input" id="service-name4" placeholder="Название сервиса">
-                                        <textarea id="service-description4" class="form-control modal-input" rows="2" placeholder="Пару слов о сервисе"></textarea>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 form-group">
-                                        <select id="service-icon5" class="form-control modal-input">
-                                        </select>
-                                        <input type="text" class="form-control modal-input" id="service-name5" placeholder="Название сервиса">
-                                        <textarea id="service-description5" class="form-control modal-input" rows="2" placeholder="Пару слов о сервисе"></textarea>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 form-group">
-                                        <select id="service-icon6" class="form-control modal-input">
-                                        </select>
-                                        <input type="text" class="form-control modal-input" id="service-name6" placeholder="Название сервиса">
-                                        <textarea id="service-description6" class="form-control modal-input" rows="2" placeholder="Пару слов о сервисе"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" @click="switchModal('.first', ['.second', '.third']);"><i class="fas fa-chevron-left"></i> Назад</button>
-                            <button type="button" class="btn btn-success" @click="switchModal('.third', ['.first', '.second']);">Далее <i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-
-                    <div class="third hide">
-                        <div class="modal-body">
-                            <div class=" container-fluid">
-                                <h5>Экскурсии</h5>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 form-group">
-                                        <label for="trip-name1">Название:</label>
-                                        <input type="text" class="form-control modal-input" id="trip-name1" placeholder="Название экскурсии">
-                                        <label for="trip-description1">Описание:</label>
-                                        <textarea id="trip-description1" class="form-control modal-input" rows="6" placeholder="Описание экскурсии"></textarea>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 form-group">
-                                        <label for="trip-name2">Название:</label>
-                                        <input type="text" class="form-control modal-input" id="trip-name2" placeholder="Название экскурсии">
-                                        <label for="trip-description2">Описание:</label>
-                                        <textarea id="trip-description2" class="form-control modal-input" rows="6" placeholder="Описание экскурсии"></textarea>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 form-group">
-                                        <label for="trip-name3">Название:</label>
-                                        <input type="text" class="form-control modal-input" id="trip-name3" placeholder="Название экскурсии">
-                                        <label for="trip-description3">Описание:</label>
-                                        <textarea id="trip-description3" class="form-control modal-input" rows="6" placeholder="Описание экскурсии"></textarea>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" @click="switchModal('.second', ['.first', '.third']);"><i class="fas fa-chevron-left"></i> Назад</button>
-                            <button type="button" class="btn btn-success" onclick="addTour();">Сохранить</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!--End Modal Add Description-->
-
-        <!-- Modal Edit Description-->
-        <div id="myModalEditDescription" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h4 class="modal-title">Редактирование описания тура</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span class="exit color-heading" aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!--End Modal Edit Description-->
 
         <!-- Modal Delete -->
         <div id="myModalDelete" class="modal fade">
@@ -400,11 +267,11 @@
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid">
-                            <p>Вы действительно хотите удалить тур <strong class="color-link">&laquo;{{editTourCard.name}}&raquo;</strong>?</p>
+                            <p>Вы действительно хотите удалить тур <strong class="color-link">&laquo;{{currentTour.name}}&raquo;</strong>?</p>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="delete-button" type="button" class="btn btn-success">Да</button>
+                        <button id="delete-button" type="button" class="btn btn-success" data-dismiss="modal" @click="deleteTour(currentTour)">Да</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Нет</button>
                     </div>
                 </div>
@@ -428,18 +295,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/firebase-manager.js"></script>
-
-    <script>
-        var wow = new WOW(
-            {
-                mobile: false,
-                tablet: false
-            }
-        );
-        wow.init();
-
-    </script>
+    <script src="assets/js/admin-vue.js"></script>
 
 </body>
-<!-- END BODY -->
 </html>

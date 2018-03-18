@@ -358,7 +358,7 @@ nav li:nth-last-of-type(1){
     color: #ffffff;
 }
 
-.search .search-input,
+.search-input,
 .modal-input{
     background: #f6f6f6;
     border: 1px solid #c5c5c5;
@@ -366,7 +366,7 @@ nav li:nth-last-of-type(1){
     padding-left: 10px;
 }
 
-.search .search-input:hover,
+.search-input:hover,
 .modal-input:hover{
     background: #e5e5e5;
 }
@@ -546,6 +546,10 @@ label.ui-state-active, label:active{
     color: white !important;
 }
 
+.ui-state-active, .ui-state-focus{
+    box-shadow: none;
+}
+
 .ui-icon {
     width: 16px !important;
     height: 16px !important;
@@ -553,10 +557,14 @@ label.ui-state-active, label:active{
 
 label[for^=page].ui-state-active .ui-icon-background{
     border: 4px solid white;
-    background-color: #6282a3 !important;
+    background-color: #6282a3;
 }
 
 [id=sort-button]{
+    width: 160px !important;
+}
+
+[id^=service-icon]{
     width: 160px !important;
 }
 
@@ -623,6 +631,54 @@ label[for^=page].ui-state-active .ui-icon-background{
 }
 
 
+#open-btn{
+    position: fixed;
+    width: 20px;
+    height: 100px;
+    background-color: #6282a3;
+    top: calc(50% - 50px);
+    left: 0;
+    z-index: 9999;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
+    line-height: 100px;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+.opened{
+    width: 300px;
+}
+
+.pushed{
+    margin-left: 300px;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: -2px;
+    background-color: white;
+    overflow-x: hidden;
+    /*transition: 0.5s;*/
+    padding-top: 20px;
+    outline: 2px solid #6282a3;
+}
+
+
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+
 /*------------------------------------------------------------------
   	CONTACTS
 ------------------------------------------------------------------*/
@@ -651,6 +707,63 @@ label[for^=page].ui-state-active .ui-icon-background{
     background-color: rgba(255, 208, 213, 0.31);
 }
 
+.table-warning, .table-warning th, .table-warning td{
+    background-color: rgba(255, 238, 186, 0.31);
+}
+
+.btn{
+    border-radius: 0;
+}
+
+.btn-success:focus, .btn-success:active,
+.btn-success:not(:disabled):not(.disabled):active:focus,
+.btn-danger:focus, .btn-danger:active,
+.btn-danger:not(:disabled):not(.disabled):active:focus,
+.btn-primary:focus, .btn-primary:active,
+.btn-primary:not(:disabled):not(.disabled):active:focus{
+    box-shadow: none;
+}
+
+.btn-success{
+    background-color: #24a169;
+    border-color: #24a169;
+}
+
+.btn-success:hover{
+    background-color: #207a59;
+    border-color: #207a59;
+}
+
+.btn-danger{
+    background-color: #d32e3c;
+    border-color: #d32e3c;
+}
+
+.btn-danger:hover{
+    background-color: #b02d3a;
+    border-color: #b02d3a;
+}
+
+.btn-primary{
+    background-color: #6282a3;
+    border-color: #6282a3;
+}
+
+.btn-primary:hover{
+    background-color: #466687;
+    border-color: #466687;
+}
+
+.btn-light{
+    border: 1px solid #c5c5c5;
+    font-size: 14px;
+}
+
+.btn-light:hover{
+    border: 1px solid #c5c5c5;
+    background: #e5e5e5;
+}
+
 .modal-content{
     border-radius: 0;
 }
@@ -663,8 +776,37 @@ label[for^=page].ui-state-active .ui-icon-background{
     display: none;
 }
 
+.hidden{
+    opacity: 0 !important;
+}
+
+.overlay{
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 15px;
+    opacity: 0;
+    width: calc(100% - 30px);
+    height: 100%;
+}
+
+.file-upload-spinner{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    top: 50%;
+    left: 50%;
+    margin-top: -20px;
+    margin-left: -20px;
+}
+
 .ui-selectmenu-open {
     z-index:9999;
+}
+
+.icon{
+    font-size: 30px;
+    color: #999caa;
 }
 
 /*------------------------------------------------------------------
@@ -688,11 +830,13 @@ label[for^=page].ui-state-active .ui-icon-background{
 .disabled-button,
 .disabled-button:hover {
     background-color: rgba(98, 130, 163, 0.62);
+    /*box-shadow: none;*/
 }
 
 .button:hover, .button:focus, .button:active {
     transition: all 0.5s;
     background: #45607d;
+    /*box-shadow: none;*/
 }
 
 
