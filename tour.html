@@ -17,7 +17,6 @@
 
     <!------------------ BEGIN HEADER ------------------->
 
-
     <div id="user">
         <header class="navbar fixed-top navbar-expand-lg">
             <div class="container">
@@ -44,17 +43,12 @@
 
                         <li v-if="currentUser.status==='client' || currentUser.status==='admin'" class="dropdown">
                             <div :style="styleObject" class="profile-photo"></div>
-                            <a class="dropdown-toggle nav-item color-white" href="#" id="navbarDropdown"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{currentUser.name ||
-                                currentUser.email}}</a>
+                            <a class="dropdown-toggle nav-item color-white" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{currentUser.name || currentUser.email}}</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a v-if="currentUser.status==='client'" class="dropdown-item color-white"
-                                   href="#">Профиль</a>
-                                <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="#">Мои
-                                    заявки</a>
+                                <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="#">Профиль</a>
+                                <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="#">Мои заявки</a>
                                 <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="#">Туры</a>
-                                <a v-if="currentUser.status==='admin'" class="dropdown-item color-white"
-                                   href="#">Клиенты</a>
+                                <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="#">Клиенты</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item color-white" href="#" @click="logout();">Выйти</a>
                             </div>
@@ -156,8 +150,50 @@
                 </div>
             </div>
             <!-- End Trips -->
-
         </main>
+
+        <!-- Modal Request Accepted -->
+        <div id="modalRequestAccepted" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Подача заявки</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <p>Ваша заявка на тур <strong class="color-link">&laquo;{{tour.name}}&raquo;</strong>
+                            принята. Наши менеджеры свяжутся с Вами в ближайшее время.</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">ОК</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal Request Accepted -->
+
+        <!-- Modal Request Denied -->
+        <div id="modalRequestDenied" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Подача заявки</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <p>Вы уже подавали заявку на тур <strong class="color-link">&laquo;{{tour.name}}&raquo;</strong>
+                            Пожалуйста, дождитесь ее рассмотрения.</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">ОК</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal Request Denied -->
+
     </div>
     <!------------------ END MAIN ---------------------->
 
