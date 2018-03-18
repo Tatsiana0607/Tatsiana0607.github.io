@@ -10,8 +10,10 @@ const config = {
 firebase.initializeApp(config);
 
 const URL_TOURS_DATA ="https://polar-star.firebaseio.com/tours";
+const URL_USERS_DATA ="https://polar-star.firebaseio.com/users";
 const TEMP_FILES_REF = firebase.storage().ref('temp');
 const TOURS_FILES_REF = firebase.storage().ref('tours/');
+const DEFAULT_PROFILE_IMG = 'https://firebasestorage.googleapis.com/v0/b/polar-star.appspot.com/o/users%2Fdefault-avatar.png?alt=media&token=e99e5596-578a-4c28-a934-e576a1e1d016';
 
 //Общее хранилище
 var storage = {
@@ -64,3 +66,119 @@ var storage = {
         }
     }
 };
+
+//объект Vue для регистрации и авторизации
+let vueUser = new Vue({
+    el: '#user',
+    data: {
+        styleObject: {
+            backgroundImage: '',
+            backgroundPosition: 'center center',
+            backgroundSize: 'cover'
+        },
+        newUser: {
+            email: '',
+            password: ''
+        },
+        passwordCheck:'',
+        users: [],
+        currentUser: {}
+    },
+    methods: {
+        register: function () {
+            let client = this.newUser;
+            let uid = client.email.replace('.', '');
+            $.ajax({
+                url: URL_USERS_DATA + "/" + uid + '.json',
+                type: 'GET',
+                dataType: 'json'
+            }).then((result) => {
+                if (result) {
+                    $('#email').css('border', '2px solid red');
+                    console.log("Пользователь с таким email-ом уже существует!");
+                }
+                else {
+                    client.password = sha1(this.newUser.password);
+                    client.status = 'client';
+                    client.profileImg = DEFAULT_PROFILE_IMG;
+                    $("#modalRegister").modal("hide");
+                    $.ajax({
+                        url: URL_USERS_DATA + "/" + uid + ".json",
+                        type: 'PUT',
+                        data: JSON.stringify(client),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: 'json'
+                    }).then((result) => {
+                        console.log('Клиент зарегистрирован', result);
+                    }).catch((err) => {
+                        console.log('Error', err.message);
+                    });
+                }
+            }).catch((err) => {
+                console.log('Error', err.message);
+            });
+        },
+        login: function () {
+            let email = this.currentUser.email.replace('.','');
+            $.ajax({
+                url:URL_USERS_DATA+"/"+email+'.json',
+                type:'GET',
+                dataType:'json'
+            }).then((result) => {
+                if(!result || sha1(this.currentUser.password)!==result.password){
+                    $('#error').css('display','block');
+                    console.log("Неверный e-mail или пароль!");
+                }
+                else{
+                    this.currentUser = result;
+                    if(result.profileImg){
+                        this.styleObject.backgroundImage = 'url('+result.profileImg+')';
+                    }
+                    document.cookie = "email="+email+"; max-age="+1800;
+                }
+            }).catch((err) => {
+                console.log('Error', err.message);
+            });
+        },
+        logout: function () {
+            this.currentUser = {status: 'guest'};
+            document.cookie = 'email=""; max-age=0';
+        },
+        getUsersData: function () {
+            $.ajax({
+                url:URL_USERS_DATA+'.json',
+                type:'GET',
+                dataType:'json'
+            }).then((result) => {
+                this.users = Object.values(result);
+            }).catch((err) => {
+                console.log('Error', err.message);
+            });
+        },
+        getUserData: function (email) {
+            $.ajax({
+                url:URL_USERS_DATA+"/"+email+'.json',
+                type:'GET',
+                dataType:'json'
+            }).then((result) => {
+                this.currentUser = result;
+                if(result.profileImg){
+                    this.styleObject.backgroundImage = 'url('+result.profileImg+')';
+                }
+            }).catch((err) => {
+                console.log('Error', err.message);
+            });
+        },
+    },
+    created: function () {
+        try{
+            let cookie = document.cookie.match(/email=(.*)/)[1];
+            document.cookie = "email="+cookie+"; max-age="+1800;
+            this.getUserData(cookie);
+        }
+        catch(err) {
+            console.log('Пользователь не залогинен.');
+            this.currentUser={status: 'guest'}
+        }
+    }
+});

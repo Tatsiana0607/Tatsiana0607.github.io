@@ -18,67 +18,109 @@
 
     <div id="page-preloader"><span class="spinner"></span></div>
 
-    <header class="navbar fixed-top navbar-expand-lg">
-        <div class="container">
+    <div id="user">
+        <header class="navbar fixed-top navbar-expand-lg">
+            <div class="container">
 
-            <!-- Brand -->
-            <div class="navbar-brand">
-                <img class="logo-img logo-img-main" src="assets/img/logo.png" alt="Polar Star Logo">
-                <img class="logo-img logo-img-active" src="assets/img/logo-dark.png" alt="Polar Star Logo">
+                <!-- Brand -->
+                <div class="navbar-brand">
+                    <img class="logo-img logo-img-main" src="assets/img/logo.png" alt="Polar Star Logo">
+                    <img class="logo-img logo-img-active" src="assets/img/logo-dark.png" alt="Polar Star Logo">
+                </div>
+
+                <!-- Toggler -->
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Links -->
+                <nav class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link active-link color-white" href="index.html">Главная</a></li>
+                        <li class="nav-item"><a class="nav-link color-white" href="about.html">О компании</a></li>
+                        <li class="nav-item"><a class="nav-link color-white" href="catalog.html">Каталог</a></li>
+                        <li class="nav-item"><a class="nav-link color-white" href="faq.html">FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link color-white" href="contact.html">Контакты</a></li>
+
+                        <li v-if="currentUser.status==='client' || currentUser.status==='admin'" class="dropdown">
+                            <div :style="styleObject" class="profile-photo"></div>
+                            <a class="dropdown-toggle nav-item color-white" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{currentUser.name || currentUser.email}}</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="#">Профиль</a>
+                                <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="#">Мои заявки</a>
+                                <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="#">Туры</a>
+                                <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="#">Клиенты</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item color-white" href="#" @click="logout();">Выйти</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+
             </div>
+        </header>
 
-            <!-- Toggler -->
-            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#menu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <!-- Video/Img Background -->
+        <div class="video-wrap">
+            <video autoplay loop muted><source src="assets/video/norway.mp4" type="video/mp4"></video>
+        </div>
+        <div class="video-overlay"></div>
 
-            <!-- Links -->
-            <nav class="collapse navbar-collapse" id="menu">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active-link color-white" href="index.html">Главная</a></li>
-                    <li class="nav-item"><a class="nav-link color-white" href="about.html">О компании</a></li>
-                    <li class="nav-item"><a class="nav-link color-white" href="catalog.html">Каталог</a></li>
-                    <li class="nav-item"><a class="nav-link color-white" href="faq.html">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link color-white" href="contact.html">Контакты</a></li>
+        <div class="img-wrap">
+            <div class="content-padding-home container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 col-md-7 col-sm-12 col-12 sm-margin-b-30 xs-margin-b-10">
+                        <h1 class="h1-home color-white">Polar Star</h1>
+                        <p class="p-home color-white">Первый туристический оператор в Беларуси,<br/>организующий поездки за Северный полярный круг</p>
+                        <br><br><br>
+                    </div>
+                    <div v-if="currentUser.status==='guest'" id="login-form" class="col-xl-4 col-lg-4 col-md-5 col-sm-10 col-10" >
+                        <input type="email" id="email-log" class="form-control margin-b-20" placeholder="E-mail" required v-model="currentUser.email">
+                        <input type="password" id="password-log" class="form-control margin-b-20" placeholder="Пароль" required v-model="currentUser.password">
+                        <div id="error">Неверный e-mail или пароль!</div>
+                        <button type="submit" class="button margin-b-20" @click="login();">Войти</button>
+                        <p class="color-white">Еще не зарегистрированы? <a href="#modalRegister" data-toggle="modal" class="color-white sign-up-link"><strong>Создать аккаунт</strong></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                    <li class="dropdown">
-                        <div class="profile-photo"></div>
-                        <a class="dropdown-toggle nav-item" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ТАТЬЯНА</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Профиль</a>
-                            <a class="dropdown-item" href="#">Мои заявки</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Выйти</a>
+        <!-- Modal -->
+        <div id="modalRegister" class="modal fade">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Регистрация</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span class="exit color-heading" aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-12 form-group">
+                                    <label for="email">E-mail:</label>
+                                    <input id="email" type="email" class="form-control modal-input" v-model="newUser.email">
+                                </div>
+                                <div class="col-lg-12 form-group">
+                                    <label for="password">Пароль:</label>
+                                    <input id="password" type="password" class="form-control modal-input" v-model="newUser.password">
+                                </div>
+                                <div class="col-lg-12 form-group">
+                                    <label for="passwordCheck">Повторите пароль:</label>
+                                    <input id="passwordCheck" type="password" class="form-control modal-input" v-model="passwordCheck">
+                                </div>
+                            </div>
                         </div>
-                    </li>
 
-                </ul>
-            </nav>
-
-        </div>
-    </header>
-
-    <!-- Video/Img Background -->
-    <div class="video-wrap">
-        <video autoplay loop muted><source src="assets/video/norway.mp4" type="video/mp4"></video>
-    </div>
-    <div class="video-overlay"></div>
-
-    <div class="img-wrap">
-        <div class="content-padding-home container">
-            <div class="row">
-                <div class="col-xl-8 col-lg-8 col-md-7 col-sm-12 col-12 sm-margin-b-30 xs-margin-b-10">
-                    <h1 class="h1-home color-white">Polar Star</h1>
-                    <p class="p-home color-white">Первый туристический оператор в Беларуси,<br/>организующий поездки за Северный полярный круг</p>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-5 col-sm-10 col-10" id="login-form">
-                    <input type="email" id="email-log" class="form-control margin-b-20" placeholder="E-mail" required>
-                    <input type="password" id="password-log" class="form-control margin-b-20" placeholder="Пароль" required>
-                    <button type="submit" class="button margin-b-20">Войти</button>
-                    <p class="color-white">Еще не зарегистрированы? <a href="#modalRegister" data-toggle="modal" class="color-white sign-up-link"><strong>Создать аккаунт</strong></a></p>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="submit" class="button mr-auto ml-auto" @click="register();">Зарегистрироваться</button>
+                    </div>
                 </div>
             </div>
         </div>
+        <!--End Modal -->
     </div>
 
     <!------------------ END HEADER ----------------->
@@ -326,48 +368,6 @@
 
     <a href="#" class="back-to-top">&uparrow;</a>
 
-    <!-- Modal -->
-    <div id="modalRegister" class="modal fade">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Регистрация</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span class="exit color-heading" aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form data-toggle="validator">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Фамилия" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Имя" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Телефон">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="E-mail" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Пароль" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Повторите пароль" required>
-                        </div>
-                        <div class="text-center">
-                            <div class="form-group">
-                                <button type="submit" class="button">Зарегистрироваться</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--End Modal -->
-
     <!------------------ SCRIPTS -------------------->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
@@ -376,6 +376,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.5.0/parallax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha1/0.6.0/sha1.min.js"></script>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/firebase-manager.js"></script>
 
