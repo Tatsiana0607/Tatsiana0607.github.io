@@ -115,8 +115,8 @@
                                     <td class="text-center">{{tour.date}}</td>
                                     <td class="text-center">{{tour.duration}}</td>
                                     <td class="text-center"><a class="icon-link" @click="getTourInfo(tour.uid)" href="#myModalEditCard" data-toggle="modal"><i class="far fa-edit"></i></a></td>
-                                    <td class="text-center" v-if="hasDescription(tour)==='danger'"><a class="icon-link" @click="switchModal('.first', ['.second', '.third']); getTourInfo(tour.uid);" href="#myModalAddDescription" data-toggle="modal"><i class="far fa-plus-square"></i>&nbsp;</a></td>
-                                    <td class="text-center" v-else><a class="icon-link" @click="getTourInfo(tour.uid)" href="#myModalEditDescription" data-toggle="modal"><i class="far fa-edit"></i></a></td>
+                                    <td class="text-center" v-if="hasDescription(tour)==='danger'"><a class="icon-link" href="#modalAddDescription" data-toggle="modal"><i class="far fa-plus-square"></i>&nbsp;</a></td>
+                                    <td class="text-center" v-else><a class="icon-link" href="#modalEditDescription" data-toggle="modal"><i class="far fa-edit"></i></a></td>
                                     <td class="text-center"><a class="icon-link" @click="getTourInfo(tour.uid)" href="#myModalDelete" data-toggle="modal"><i class="far fa-trash-alt"></i></a></td>
                                 </tr>
                             </template>
@@ -332,6 +332,46 @@
             </div>
         </div>
         <!--End Modal Delete -->
+
+        <!-- Modal Add Description -->
+        <div id="modalAddDescription" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Добавление описания</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <p>Данная функция находится в разработке. Приносим свои извинения.</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">ОК</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal Add Description -->
+
+        <!-- Modal Edit Description -->
+        <div id="modalEditDescription" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Редактирование описания</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <p>Данная функция находится в разработке. Приносим свои извинения.</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">ОК</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal Edit Description -->
 
         <!-- Modal View Requests-->
         <div id="modalViewRequests" class="modal fade">

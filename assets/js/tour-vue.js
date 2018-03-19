@@ -25,6 +25,10 @@ let vueTour = new Vue({
         },
         addTourRequest: function () {
             let client = vueMain.currentUser;
+            if(client.status==='guest'){
+                $("#modalLoginOrRegistration").modal("show");
+                return 0;
+            }
             let uid = client.email.replace('.', '');
 
             if(client.requests){

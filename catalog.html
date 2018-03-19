@@ -98,8 +98,8 @@
                     <div id="country" class="col-lg-12">
                         <p class="color-heading p-home"><strong>Страна:</strong></p>
                         <span v-for="country in countries">
-                                <input :id="country.id" type="checkbox" :value="country.id" v-model="checkedCountries">
-                                <label :for="country.id">{{country.value}}</label>
+                            <input :id="country.id" type="checkbox" :value="country.id" v-model="checkedCountries">
+                            <label :for="country.id">{{country.value}}</label>
                         </span>
                     </div>
                 </div>
@@ -111,69 +111,6 @@
         </div>
 
         <main>
-            <!--&lt;!&ndash; Begin Search &ndash;&gt;-->
-            <!--<div id="search" class="bg-color-white">-->
-                <!--<div class="content-padding container">-->
-
-                    <!--<div class="row margin-b-10">-->
-                        <!--<div class="col-lg-12 col-md-12 col-sm-12">-->
-                            <!--<h2>Поиск по каталогу</h2>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-                    <!--<div class="row search">-->
-                        <!--<div class="col-lg-6 col-md-10 margin-b-20 md-margin-b-10 sm-margin-b-10">-->
-                            <!--<p class="color-heading p-home"><strong>Что ищем?</strong></p>-->
-                            <!--<input v-model="search" type="text" class="form-control search-input" placeholder='Например: "Копенгаген" или "Тур в Исландию"'>-->
-                        <!--</div>-->
-                        <!--<div class="col-lg-3 col-md-3">-->
-                            <!--<p class="color-heading p-home"><strong>Выезд: </strong></p>-->
-                            <!--<input id="date-start" type="text" class="form-control search-input" placeholder="С какого числа">-->
-                        <!--</div>-->
-                        <!--<div class="col-lg-3 col-md-3">-->
-                            <!--<p class="p-home sm-margin-b-0"><br></p>-->
-                            <!--<input id="date-end" type="text" class="form-control search-input" placeholder="По какое число">-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="row margin-b-30">-->
-                        <!--<div class="col-lg-4 col-md-3">-->
-                            <!--<p class="color-heading p-home"><strong>Цена: <span>от {{priceValues.min}} до {{priceValues.max}} BYN</span></strong></p>-->
-                            <!--<div id="price-slider" class="margin-b-20"></div>-->
-                            <!--<p class="color-heading p-home"><strong>Длительность: <span>от {{durationValues.min}} до {{durationValues.max}} дней</span></strong></p>-->
-                            <!--<div id="duration-slider"></div>-->
-                        <!--</div>-->
-                        <!--<div class="col-lg-2 col-md-3">-->
-                            <!--<select id="sort">-->
-                                <!--<option v-for="option in options" :value="option.value">{{option.text}}</option>-->
-                            <!--</select>-->
-                        <!--</div>-->
-                        <!--<div id="country" class="col-lg-6 col-md-3">-->
-                            <!--<p class="color-heading p-home"><strong>Страна:</strong></p>-->
-                            <!--<span v-for="country in countries">-->
-                                <!--<input :id="country.id" type="checkbox" :value="country.id" v-model="checkedCountries">-->
-                                <!--<label :for="country.id">{{country.value}}</label>-->
-                            <!--</span>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="row">-->
-                        <!--<div id="pagination" class="col-lg-12">-->
-                            <!--<p class="color-heading p-home"><strong>Отображать на странице:</strong></p>-->
-                            <!--<span v-for="page in pagination">-->
-                                <!--<template v-if="page.value===toursPerPage">-->
-                                    <!--<input :id="'page'+page.value" type="radio" :value="page.value" name="page" v-model="toursPerPage">-->
-                                    <!--<label :for="'page'+page.value">{{page.text}}</label>-->
-                                <!--</template>-->
-                                <!--<template v-else>-->
-                                    <!--<input :id="'page'+page.value" type="radio" :value="page.value" name="page" v-model="toursPerPage" @click="currentPage=1">-->
-                                    <!--<label :for="'page'+page.value" @click="currentPage=1">{{page.text}}</label>-->
-                                <!--</template>-->
-                            <!--</span>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--&lt;!&ndash; End Search &ndash;&gt;-->
-
             <!-- Begin Catalog -->
             <div class="bg-color-grey">
                 <div class="content-padding container">
@@ -227,7 +164,7 @@
                                         <li v-for="desc in tour.description" class="tour-feature">{{desc}}</li>
                                     </ul>
                                     <button v-if="hasDescription(tour)==='success'" class="button"><a class="button-link" :href="'tour.html?name='+transliterate(tour.name)">Подробнее</a></button>
-                                    <button v-else class="disabled-button">Подробнее</button>
+                                    <button v-else class="disabled-button" data-toggle="modal" data-target="#modalNoDescription">Подробнее</button>
                                 </div>
                             </div>
                         </div>
@@ -248,6 +185,28 @@
             </div>
             <!-- End Catalog -->
         </main>
+
+        <!-- Modal No Description -->
+        <div id="modalNoDescription" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Подробнее</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <p>Подробное описание данного тура станет доступно в ближайшее время.
+                            Следите за обявлениями на нашем сайте.</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">ОК</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal No Description -->
+
     </div>
     <!------------------ END MAIN ---------------------->
 

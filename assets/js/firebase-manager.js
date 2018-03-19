@@ -83,7 +83,6 @@ let vueMain = new Vue({
         passwordCheck:'',
         users: [],
         currentUser: {},
-        //requests: []
     },
     methods: {
         register: function () {
@@ -111,6 +110,8 @@ let vueMain = new Vue({
                         dataType: 'json'
                     }).then((result) => {
                         console.log('Клиент зарегистрирован', result);
+                        this.newUser={};
+                        this.passwordCheck='';
                     }).catch((err) => {
                         console.log('Error', err.message);
                     });
