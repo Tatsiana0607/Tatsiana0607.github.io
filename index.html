@@ -48,8 +48,8 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="user.html#user-profile">Профиль</a>
                                 <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="user.html#user-requests">Мои заявки</a>
-                                <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="admin.html#tours">Туры</a>
-                                <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="admin.html#clients">Клиенты</a>
+                                <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="admin.html#admin-tours">Туры</a>
+                                <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="admin.html#admin-clients">Клиенты</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item color-white" href="#" @click="logout();">Выйти</a>
                             </div>

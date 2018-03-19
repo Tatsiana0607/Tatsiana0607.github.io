@@ -4,6 +4,9 @@ let vueAdmin = new Vue({
     data: {
         countries: storage.countries,
         tours: storage.tours,
+        users: [],
+        user: {},
+        requests: {},
         fullness:[
             {value: 'danger', text: 'без описания'},
             {value: 'warning', text: 'частичное описание'},
@@ -119,12 +122,6 @@ let vueAdmin = new Vue({
                 country: "norway",
             };
         },
-        // clearImgInfo: function () {
-        //     this.currentTour.mainImg = 'assets/img/default-image.png';
-        //     this.currentTour.trip1 = 'assets/img/default-image.png';
-        //     this.currentTour.trip2 = 'assets/img/default-image.png';
-        //     this.currentTour.trip3 = 'assets/img/default-image.png';
-        // },
         switchModal: function (enable, disable) {
             $(enable).removeClass('hide');
             $(disable[0]).addClass('hide');
@@ -132,6 +129,47 @@ let vueAdmin = new Vue({
         },
         removeOverlay: function () {
             $('.overlay').css('opacity', '0');
+        },
+        getUsersData: function () {
+            $.ajax({
+                url:URL_USERS_DATA+'.json',
+                type:'GET',
+                dataType:'json'
+            }).then((result) => {
+                this.users = Object.values(result);
+            }).catch((err) => {
+                console.log('Error', err.message);
+            });
+        },
+        getUserRequests: function (email) {
+            let uid = email.replace('.','');
+            $.ajax({
+                url:URL_USERS_DATA+"/"+uid+'.json',
+                type:'GET',
+                dataType:'json'
+            }).then((result) => {
+                this.user = result;
+                this.requests = result.requests;
+            }).catch((err) => {
+                console.log('Error', err.message);
+            });
+        },
+        setAsConfirmed: function (name) {
+            let uid = this.transliterate(name);
+            let email = this.user.email.replace('.','');
+            let status = {status: 'confirmed'};
+            $.ajax({
+                url: URL_USERS_DATA + "/" +email+ "/requests/"+uid+".json",
+                type: 'PATCH',
+                data: JSON.stringify(status),
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json'
+            }).then((result) => {
+                console.log('Заявка обработана', result);
+                this.getUserRequests(email);
+            }).catch((err) => {
+                console.log('Error', err.message);
+            });
         }
     },
     computed:{
@@ -148,6 +186,7 @@ let vueAdmin = new Vue({
     },
     created: function () {
         this.getToursData();
+        this.getUsersData();
     },
     mounted: function () {
         let vm = this;
@@ -169,26 +208,6 @@ $('#fullness').controlgroup();
 $('#destination').selectmenu({change:changeDestination});
 $('#destinationNew').selectmenu({change:changeDestination});
 
-$('#service-icon1').selectmenu({change:changeIcon1});
-$('#service-icon1New').selectmenu({change:changeIcon1});
-$('#service-icon2').selectmenu({change:changeIcon2});
-$('#service-icon2New').selectmenu({change:changeIcon2});
-$('#service-icon3').selectmenu({change:changeIcon3});
-$('#service-icon3New').selectmenu({change:changeIcon3});
-$('#service-icon4').selectmenu({change:changeIcon4});
-$('#service-icon4New').selectmenu({change:changeIcon4});
-$('#service-icon5').selectmenu({change:changeIcon5});
-$('#service-icon5New').selectmenu({change:changeIcon5});
-$('#service-icon6').selectmenu({change:changeIcon6});
-$('#service-icon6New').selectmenu({change:changeIcon6});
-
 function changeDestination(event,ui) {
     vueAdmin.currentTour.country = ui.item.value;
 }
-
-function changeIcon1(event, ui) {vueAdmin.icons[1] = ui.item.value;}
-function changeIcon2(event, ui) {vueAdmin.icons[2] = ui.item.value;}
-function changeIcon3(event, ui) {vueAdmin.icons[3] = ui.item.value;}
-function changeIcon4(event, ui) {vueAdmin.icons[4] = ui.item.value;}
-function changeIcon5(event, ui) {vueAdmin.icons[5] = ui.item.value;}
-function changeIcon6(event, ui) {vueAdmin.icons[6] = ui.item.value;}

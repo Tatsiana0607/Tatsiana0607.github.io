@@ -46,10 +46,10 @@
                         <div :style="styleObject" class="profile-photo"></div>
                         <a class="dropdown-toggle nav-item color-white" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{currentUser.name || currentUser.email}}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="#">Профиль</a>
-                            <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="user.html">Мои заявки</a>
-                            <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="admin.html">Туры</a>
-                            <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="#">Клиенты</a>
+                            <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="user.html#user-profile">Профиль</a>
+                            <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="user.html#user-requests">Мои заявки</a>
+                            <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="admin.html#admin-tours">Туры</a>
+                            <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="admin.html#admin-clients">Клиенты</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item color-white" href="#" @click="logout();">Выйти</a>
                         </div>
@@ -77,11 +77,11 @@
 
                 <div id="tabs">
                     <ul>
-                        <li><a href="#tours"><span>Туры</span></a></li>
-                        <li><a href="#clients"><span>Клиенты</span></a></li>
+                        <li><a href="#admin-tours"><span>Туры</span></a></li>
+                        <li><a href="#admin-clients"><span>Клиенты</span></a></li>
                     </ul>
 
-                    <div id="tours">
+                    <div id="admin-tours">
                         <div class="row">
                             <div class="col-lg-3 md-margin-b-10 sm-margin-b-10">
                                 <h2>Список туров</h2>
@@ -124,12 +124,35 @@
                         <button class="btn btn-success" href="#myModalAddСard" data-toggle="modal" @click="clearInfo();">Добавить новый тур</button>
                     </div>
 
-                    <div id="clients">
+                    <div id="admin-clients">
                         <div class="row">
                             <div class="col-lg-6 md-margin-b-10 sm-margin-b-10">
                                 <h2>Список клиентов</h2>
                             </div>
                         </div>
+
+                        <table class="table table-hover table-responsive-lg">
+                            <tr>
+                                <th class="text-center" scope="col">№</th>
+                                <th class="text-center" scope="col">E-mail</th>
+                                <th class="text-center" scope="col">Имя</th>
+                                <th class="text-center" scope="col">Фамилия</th>
+                                <th class="text-center" scope="col">Телефон</th>
+                                <th class="text-center" scope="col"></th>
+                            </tr>
+                            <template v-for="(user,i) in users">
+                                <tr v-if="user.status==='client'">
+                                    <td class="text-center">{{i+1}}</td>
+                                    <td class="text-center">{{user.email}}</td>
+                                    <td class="text-center">{{user.name}}</td>
+                                    <td class="text-center">{{user.surname}}</td>
+                                    <td class="text-center">{{user.phone}}</td>
+                                    <td v-if="user.requests" class="text-center"><button class="btn btn-primary" @click="getUserRequests(user.email);" data-toggle="modal" data-target="#modalViewRequests">Посмотреть заявки</button></td>
+                                    <td v-else></td>
+                                </tr>
+                            </template>
+                        </table>
+
                     </div>
                 </div>
 
@@ -309,6 +332,50 @@
             </div>
         </div>
         <!--End Modal Delete -->
+
+        <!-- Modal View Requests-->
+        <div id="modalViewRequests" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Заявки пользователя</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span class="exit color-heading" aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <table class="table table-hover table-responsive-lg">
+                                <tr>
+                                    <th class="text-center" scope="col">№</th>
+                                    <th class="text-center" scope="col">Название тура</th>
+                                    <th class="text-center" scope="col">Статус заявки</th>
+                                    <th class="text-center" scope="col"></th>
+                                </tr>
+                                <template v-for="(request, key, i) in requests">
+                                    <tr>
+                                        <td class="text-center">{{i+1}}</td>
+                                        <td class="text-center">{{request.name}}</td>
+                                        <td v-if="request.status==='processing'" class="text-center text-danger">В обработке</td>
+                                        <td v-else class="text-center text-success">Обработана</td>
+                                        <td v-if="request.status==='processing'" class="text-center"><button @click="setAsConfirmed(request.name);" class="btn btn-success">Обработать</button></td>
+                                        <td v-else></td>
+                                    </tr>
+                                </template>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">ОК</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--End Modal View Requests-->
 
     </main>
 

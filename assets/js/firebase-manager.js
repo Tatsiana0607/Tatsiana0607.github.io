@@ -144,17 +144,9 @@ let vueMain = new Vue({
         logout: function () {
             this.currentUser = {status: 'guest'};
             document.cookie = 'email=""; max-age=0';
-        },
-        getUsersData: function () {
-            $.ajax({
-                url:URL_USERS_DATA+'.json',
-                type:'GET',
-                dataType:'json'
-            }).then((result) => {
-                this.users = Object.values(result);
-            }).catch((err) => {
-                console.log('Error', err.message);
-            });
+            if(window.location.href!=='https://tatsiana0607.github.io/index.html'){
+                window.location.href='index.html';
+            }
         },
         getUserData: function (email) {
             $.ajax({
@@ -182,7 +174,7 @@ let vueMain = new Vue({
             this.getUserData(cookie);
         }
         catch(err) {
-            console.log('Пользователь не залогинен.');
+            console.log('Пользователь не авторизован.');
             this.currentUser={status: 'guest'}
         }
     }
