@@ -24,7 +24,7 @@ let vueTour = new Vue({
             });
         },
         addTourRequest: function () {
-            let client = vueUser.currentUser;
+            let client = vueMain.currentUser;
             let uid = client.email.replace('.', '');
 
             if(client.requests){
@@ -40,6 +40,9 @@ let vueTour = new Vue({
                 let request = {
                     [vueTour.tour.uid]: {
                         name: vueTour.tour.name,
+                        price: vueTour.tour.price,
+                        date: vueTour.tour.date,
+                        duration: vueTour.tour.duration,
                         status: 'processing'
                     }
                 };
@@ -51,7 +54,7 @@ let vueTour = new Vue({
                     dataType: 'json'
                 }).then((result) => {
                     console.log('Заявка подана', result);
-                    vueUser.getUserData(uid);
+                    vueMain.getUserData(uid);
                 }).catch((err) => {
                     console.log('Error', err.message);
                 });

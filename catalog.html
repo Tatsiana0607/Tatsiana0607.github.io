@@ -34,9 +34,9 @@
             <!-- Links -->
             <nav class="collapse navbar-collapse" id="menu">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active-link color-white" href="index.html">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link color-white" href="index.html">Главная</a></li>
                     <li class="nav-item"><a class="nav-link color-white" href="about.html">О компании</a></li>
-                    <li class="nav-item"><a class="nav-link color-white" href="catalog.html">Каталог</a></li>
+                    <li class="nav-item"><a class="nav-link active-link color-white" href="catalog.html">Каталог</a></li>
                     <li class="nav-item"><a class="nav-link color-white" href="faq.html">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link color-white" href="contact.html">Контакты</a></li>
 
@@ -45,8 +45,8 @@
                         <a class="dropdown-toggle nav-item color-white" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{currentUser.name || currentUser.email}}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="#">Профиль</a>
-                            <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="#">Мои заявки</a>
-                            <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="#">Туры</a>
+                            <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="user.html">Мои заявки</a>
+                            <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="admin.html">Туры</a>
                             <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="#">Клиенты</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item color-white" href="#" @click="logout();">Выйти</a>

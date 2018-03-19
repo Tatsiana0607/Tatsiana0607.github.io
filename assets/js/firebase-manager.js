@@ -68,7 +68,7 @@ var storage = {
 };
 
 //объект Vue для регистрации и авторизации
-let vueUser = new Vue({
+let vueMain = new Vue({
     el: '#user',
     data: {
         styleObject: {
@@ -82,7 +82,8 @@ let vueUser = new Vue({
         },
         passwordCheck:'',
         users: [],
-        currentUser: {}
+        currentUser: {},
+        //requests: []
     },
     methods: {
         register: function () {
@@ -165,6 +166,10 @@ let vueUser = new Vue({
                 if(result.profileImg){
                     this.styleObject.backgroundImage = 'url('+result.profileImg+')';
                 }
+                if(this.currentUser.requests){
+                    vueUser.requests = Object.values(this.currentUser.requests);
+                }
+                else vueUser.requests={};
             }).catch((err) => {
                 console.log('Error', err.message);
             });

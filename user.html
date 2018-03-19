@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Турфирма Polar Star - Личный кабинет</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <link rel="stylesheet" href="assets/css/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="assets/css/style.css"/>
+    <link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon">
+</head>
+<body>
+
+    <!------------------ BEGIN HEADER ------------------->
+
+    <header id="user" class="navbar fixed-top navbar-expand-lg">
+        <div class="container">
+
+            <!-- Brand -->
+            <div class="navbar-brand">
+                <img class="logo-img logo-img-main" src="assets/img/logo.png" alt="Polar Star Logo">
+                <img class="logo-img logo-img-active" src="assets/img/logo-dark.png" alt="Polar Star Logo">
+            </div>
+
+            <!-- Toggler -->
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <nav class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link color-white" href="index.html">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link color-white" href="about.html">О компании</a></li>
+                    <li class="nav-item"><a class="nav-link color-white" href="catalog.html">Каталог</a></li>
+                    <li class="nav-item"><a class="nav-link color-white" href="faq.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link color-white" href="contact.html">Контакты</a></li>
+
+                    <li v-if="currentUser.status==='client' || currentUser.status==='admin'" class="dropdown">
+                        <div :style="styleObject" class="profile-photo"></div>
+                        <a class="dropdown-toggle nav-item color-white" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{currentUser.name || currentUser.email}}</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="#">Профиль</a>
+                            <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="user.html">Мои заявки</a>
+                            <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="admin.html">Туры</a>
+                            <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="#">Клиенты</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item color-white" href="#" @click="logout();">Выйти</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <!------------------ END HEADER ----------------->
+
+    <div data-parallax="scroll" data-image-src="assets/img/background/parallax-user.jpg">
+        <div class="parallax-content container">
+            <h1 class="h1-other color-white">Личный кабинет</h1>
+        </div>
+    </div>
+
+    <!---------------- BEGIN MAIN ------------------->
+
+    <main id="profile">
+
+        <div class="bg-color-white">
+            <div class="content-padding container">
+                <div class="row">
+                    <div class="col-lg-6 md-margin-b-10 sm-margin-b-10">
+                        <h2>Список заявок</h2>
+                    </div>
+                </div>
+                <table class="table table-hover table-responsive-lg margin-b-30">
+                    <tr>
+                        <th class="text-center" scope="col">Название тура</th>
+                        <th class="text-center" scope="col">Цена в BYN</th>
+                        <th class="text-center" scope="col">Дата выезда</th>
+                        <th class="text-center" scope="col">Длительность</th>
+                        <th class="text-center" scope="col"></th>
+                    </tr>
+                    <template v-for="request in requests">
+                        <tr :class="request.status==='processing' ? 'table-warning' : 'table-success'">
+                            <td class="text-center">{{request.name}}</td>
+                            <td class="text-center">{{request.price}}</td>
+                            <td class="text-center">{{request.date}}</td>
+                            <td class="text-center">{{request.duration}}</td>
+                            <td v-if="request.status==='processing'">
+                                <button class="btn btn-danger" @click="cancelRequest(request.name);">Отменить заявку на тур</button>
+                            </td>
+                            <td v-else>
+                                <button class="btn btn-primary" @click="cancelRequest(request.name);">Очистить информацию&nbsp;</button>
+                            </td>
+                        </tr>
+                    </template>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <a href="#" class="back-to-top">&uparrow;</a>
+
+    <!------------------ SCRIPTS -------------------->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment-with-locales.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.5.0/parallax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/firebase-manager.js"></script>
+    <script src="assets/js/user-vue.js"></script>
+
+</body>
+</html>

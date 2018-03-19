@@ -47,8 +47,8 @@
                             <a class="dropdown-toggle nav-item color-white" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{currentUser.name || currentUser.email}}</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="#">Профиль</a>
-                                <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="#">Мои заявки</a>
-                                <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="#">Туры</a>
+                                <a v-if="currentUser.status==='client'" class="dropdown-item color-white" href="user.html">Мои заявки</a>
+                                <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="admin.html">Туры</a>
                                 <a v-if="currentUser.status==='admin'" class="dropdown-item color-white" href="#">Клиенты</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item color-white" href="#" @click="logout();">Выйти</a>
