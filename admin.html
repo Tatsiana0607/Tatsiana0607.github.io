@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
-    <link rel="stylesheet" href="assets/css/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="assets/css/jquery-ui.theme-tabs.min.css">
     <link rel="stylesheet" href="assets/css/style.css"/>
     <link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon">
 </head>
@@ -75,46 +75,64 @@
         <div class="bg-color-white">
             <div class="content-padding container">
 
-                <div class="row">
-                    <div class="col-lg-3 md-margin-b-10 sm-margin-b-10">
-                        <h2>Список туров</h2>
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#tours"><span>Туры</span></a></li>
+                        <li><a href="#clients"><span>Клиенты</span></a></li>
+                    </ul>
+
+                    <div id="tours">
+                        <div class="row">
+                            <div class="col-lg-3 md-margin-b-10 sm-margin-b-10">
+                                <h2>Список туров</h2>
+                            </div>
+                            <div id="fullness" class="col-lg-9 col-md-12 col-sm-12 col-12">
+                                <span v-for="item in fullness">
+                                    <input :id="'item'+item.value" type="checkbox" :value="item.value" v-model="checkedFullness">
+                                    <label :for="'item'+item.value">{{item.text}}</label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <table class="table table-hover table-responsive-lg">
+                            <tr>
+                                <th class="text-center" scope="col">№</th>
+                                <th class="text-center" scope="col">Название</th>
+                                <th class="text-center" scope="col">Страна назначения</th>
+                                <th class="text-center" scope="col">Цена в BYN</th>
+                                <th class="text-center" scope="col">Дата выезда</th>
+                                <th class="text-center" scope="col">Длительность</th>
+                                <th class="text-center" scope="col">Карточка</th>
+                                <th class="text-center" scope="col">Описание</th>
+                                <th class="text-center" scope="col">Удалить</th>
+                            </tr>
+                            <template v-for="(tour,i) in filteredTours">
+                                <tr :class="'table-'+hasDescription(tour)">
+                                    <td>{{i+1}}</td>
+                                    <td>{{tour.name}}</td>
+                                    <td class="text-center">{{getCountryById(tour.country)}}</td>
+                                    <td class="text-center">{{tour.price}}</td>
+                                    <td class="text-center">{{tour.date}}</td>
+                                    <td class="text-center">{{tour.duration}}</td>
+                                    <td class="text-center"><a class="icon-link" @click="getTourInfo(tour.uid)" href="#myModalEditCard" data-toggle="modal"><i class="far fa-edit"></i></a></td>
+                                    <td class="text-center" v-if="hasDescription(tour)==='danger'"><a class="icon-link" @click="switchModal('.first', ['.second', '.third']); getTourInfo(tour.uid);" href="#myModalAddDescription" data-toggle="modal"><i class="far fa-plus-square"></i>&nbsp;</a></td>
+                                    <td class="text-center" v-else><a class="icon-link" @click="getTourInfo(tour.uid)" href="#myModalEditDescription" data-toggle="modal"><i class="far fa-edit"></i></a></td>
+                                    <td class="text-center"><a class="icon-link" @click="getTourInfo(tour.uid)" href="#myModalDelete" data-toggle="modal"><i class="far fa-trash-alt"></i></a></td>
+                                </tr>
+                            </template>
+                        </table>
+                        <button class="btn btn-success" href="#myModalAddСard" data-toggle="modal" @click="clearInfo();">Добавить новый тур</button>
                     </div>
-                    <div id="fullness" class="col-lg-9 col-md-12 col-sm-12 col-12">
-                        <span v-for="item in fullness">
-                            <input :id="'item'+item.value" type="checkbox" :value="item.value" v-model="checkedFullness">
-                            <label :for="'item'+item.value">{{item.text}}</label>
-                        </span>
+
+                    <div id="clients">
+                        <div class="row">
+                            <div class="col-lg-6 md-margin-b-10 sm-margin-b-10">
+                                <h2>Список клиентов</h2>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <table class="table table-hover table-responsive-lg">
-                    <tr>
-                        <th class="text-center" scope="col">№</th>
-                        <th class="text-center" scope="col">Название</th>
-                        <th class="text-center" scope="col">Страна назначения</th>
-                        <th class="text-center" scope="col">Цена в BYN</th>
-                        <th class="text-center" scope="col">Дата выезда</th>
-                        <th class="text-center" scope="col">Длительность</th>
-                        <th class="text-center" scope="col">Карточка</th>
-                        <th class="text-center" scope="col">Описание</th>
-                        <th class="text-center" scope="col">Удалить</th>
-                    </tr>
-                    <template v-for="(tour,i) in filteredTours">
-                        <tr :class="'table-'+hasDescription(tour)">
-                            <td>{{i+1}}</td>
-                            <td>{{tour.name}}</td>
-                            <td class="text-center">{{getCountryById(tour.country)}}</td>
-                            <td class="text-center">{{tour.price}}</td>
-                            <td class="text-center">{{tour.date}}</td>
-                            <td class="text-center">{{tour.duration}}</td>
-                            <td class="text-center"><a class="icon-link" @click="getTourInfo(tour.uid)" href="#myModalEditCard" data-toggle="modal"><i class="far fa-edit"></i></a></td>
-                            <td class="text-center" v-if="hasDescription(tour)==='danger'"><a class="icon-link" @click="switchModal('.first', ['.second', '.third']); getTourInfo(tour.uid);" href="#myModalAddDescription" data-toggle="modal"><i class="far fa-plus-square"></i>&nbsp;</a></td>
-                            <td class="text-center" v-else><a class="icon-link" @click="getTourInfo(tour.uid)" href="#myModalEditDescription" data-toggle="modal"><i class="far fa-edit"></i></a></td>
-                            <td class="text-center"><a class="icon-link" @click="getTourInfo(tour.uid)" href="#myModalDelete" data-toggle="modal"><i class="far fa-trash-alt"></i></a></td>
-                        </tr>
-                    </template>
-                </table>
-                <button class="btn btn-success" href="#myModalAddСard" data-toggle="modal" @click="clearInfo();">Добавить новый тур</button>
             </div>
         </div>
 
@@ -309,6 +327,10 @@
     <script src="assets/js/script.js"></script>
     <script src="assets/js/firebase-manager.js"></script>
     <script src="assets/js/admin-vue.js"></script>
+
+    <script>
+        $( "#tabs" ).tabs();
+    </script>
 
 </body>
 </html>

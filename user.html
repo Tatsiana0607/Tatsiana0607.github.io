@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
-    <link rel="stylesheet" href="assets/css/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="assets/css/jquery-ui.theme-tabs.min.css">
     <link rel="stylesheet" href="assets/css/style.css"/>
     <link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon">
 </head>
@@ -73,34 +73,54 @@
 
         <div class="bg-color-white">
             <div class="content-padding container">
-                <div class="row">
-                    <div class="col-lg-6 md-margin-b-10 sm-margin-b-10">
-                        <h2>Список заявок</h2>
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#user-profile"><span>Профиль</span></a></li>
+                        <li><a href="#user-requests"><span>Заявки</span></a></li>
+                    </ul>
+
+                    <div id="user-profile">
+                        <div class="row">
+                            <div class="col-lg-6 md-margin-b-10 sm-margin-b-10">
+                                <h2>Профиль пользователя</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="user-requests">
+                        <div class="row">
+                            <div class="col-lg-6 md-margin-b-10 sm-margin-b-10">
+                                <h2>Список заявок</h2>
+                            </div>
+                        </div>
+                        <table class="table table-hover table-responsive-lg margin-b-30">
+                            <tr>
+                                <th class="text-center" scope="col">Название тура</th>
+                                <th class="text-center" scope="col">Цена в BYN</th>
+                                <th class="text-center" scope="col">Дата выезда</th>
+                                <th class="text-center" scope="col">Длительность</th>
+                                <th class="text-center" scope="col">Статус</th>
+                                <th class="text-center" scope="col"></th>
+                            </tr>
+                            <template v-for="request in requests">
+                                <tr>
+                                    <td class="text-center">{{request.name}}</td>
+                                    <td class="text-center">{{request.price}}</td>
+                                    <td class="text-center">{{request.date}}</td>
+                                    <td class="text-center">{{request.duration}}</td>
+                                    <template v-if="request.status==='processing'">
+                                        <td class="text-center text-danger">Заявка на рассмотрении</td>
+                                        <td><button class="btn btn-danger" @click="cancelRequest(request.name);">Отменить заявку на тур</button></td>
+                                    </template>
+                                    <template v-else>
+                                        <td class="text-center text-success">Заявка рассмотрена</td>
+                                        <td><button class="btn btn-primary" @click="cancelRequest(request.name);">Очистить информацию&nbsp;</button></td>
+                                    </template>
+                                </tr>
+                            </template>
+                        </table>
                     </div>
                 </div>
-                <table class="table table-hover table-responsive-lg margin-b-30">
-                    <tr>
-                        <th class="text-center" scope="col">Название тура</th>
-                        <th class="text-center" scope="col">Цена в BYN</th>
-                        <th class="text-center" scope="col">Дата выезда</th>
-                        <th class="text-center" scope="col">Длительность</th>
-                        <th class="text-center" scope="col"></th>
-                    </tr>
-                    <template v-for="request in requests">
-                        <tr :class="request.status==='processing' ? 'table-warning' : 'table-success'">
-                            <td class="text-center">{{request.name}}</td>
-                            <td class="text-center">{{request.price}}</td>
-                            <td class="text-center">{{request.date}}</td>
-                            <td class="text-center">{{request.duration}}</td>
-                            <td v-if="request.status==='processing'">
-                                <button class="btn btn-danger" @click="cancelRequest(request.name);">Отменить заявку на тур</button>
-                            </td>
-                            <td v-else>
-                                <button class="btn btn-primary" @click="cancelRequest(request.name);">Очистить информацию&nbsp;</button>
-                            </td>
-                        </tr>
-                    </template>
-                </table>
             </div>
         </div>
 
@@ -121,6 +141,10 @@
     <script src="assets/js/script.js"></script>
     <script src="assets/js/firebase-manager.js"></script>
     <script src="assets/js/user-vue.js"></script>
+
+    <script>
+        $( "#tabs" ).tabs();
+    </script>
 
 </body>
 </html>
