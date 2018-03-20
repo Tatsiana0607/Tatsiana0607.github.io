@@ -157,7 +157,6 @@ let vueMain = new Vue({
                 dataType:'json'
             }).then((result) => {
                 this.currentUser = result;
-                vueUser.currentUser = result;
                 if(result.profileImg){
                     this.styleObject.backgroundImage = 'url('+result.profileImg+')';
                 }

@@ -3,9 +3,8 @@ let vueUser = new Vue({
     el: '#profile',
     data: {
         requests: [],
-        currentUser: {},
         passwordNew: '',
-        profileImg: {}
+        // profileImg: {}
     },
     methods: {
         transliterate: storage.transliterate,

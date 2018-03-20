@@ -85,6 +85,75 @@
                                 <h2>Профиль пользователя</h2>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+                                        <label>Фотография для профиля:</label>
+                                        <label class="btn btn-light" for="profileImg">
+                                            <input id="profileImg" type="file" class="hide" @change="uploadFile('profileImg')">
+                                            Выберите файл
+                                        </label>
+                                        <span class="profile-file-info"></span>
+                                    </div>
+                                </div>
+                                <div class="row sm-margin-b-10">
+                                    <div class="col-lg-12">
+                                        <img class="img-fluid" :src="vueMain.currentUser.profileImg" @load="$('.overlay').css('opacity', '0');">
+                                        <div class="overlay">
+                                            <i class="file-upload-spinner fas fa-spinner fa-pulse"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 form-group">
+                                        <label for="name">Имя:</label>
+                                        <input type="text" class="form-control modal-input" id="name" v-model="vueMain.currentUser.name">
+                                    </div>
+                                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 form-group">
+                                        <label for="surname">Фамилия:</label>
+                                        <input type="text" class="form-control modal-input" id="surname" v-model="vueMain.currentUser.surname">
+                                    </div>
+                                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 form-group">
+                                        <label for="birthday">Дата рождения:</label>
+                                        <input type="text" class="form-control modal-input" id="birthday" v-model="vueMain.currentUser.birthday">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-12 col-sm-12 col-12 form-group">
+                                        <label for="address">Адрес:</label>
+                                        <input type="text" class="form-control modal-input" id="address" v-model="vueMain.currentUser.address">
+                                    </div>
+                                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 form-group">
+                                        <label for="phone">Телефон:</label>
+                                        <input type="text" class="form-control modal-input" id="phone" v-model="vueMain.currentUser.phone">
+                                    </div>
+                                </div>
+                                <div class="row margin-b-30">
+                                    <div class="col-lg-8 col-md-12 col-sm-12 col-12 form-group">
+                                        <button class="btn btn-success" @click="editProfile();">Сохранить изменения</button>
+                                    </div>
+                                </div>
+                                <div class="row margin-b-30">
+                                    <div class="col-lg-4 sm-margin-b-30">
+                                        <h3>Сменить пароль</h3>
+                                        <label for="passwordNew">Новый пароль:</label>
+                                        <input type="password" class="form-control modal-input margin-b-10" id="passwordNew" v-model="passwordNew">
+                                        <label for="passwordCheck">Повторите пароль:</label>
+                                        <input type="password" class="form-control modal-input margin-b-20" id="passwordCheck">
+                                        <button class="btn btn-success" @click="editPassword();">Сохранить пароль</button>
+                                    </div>
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-6">
+                                        <h3>Удалить аккаунт</h3>
+                                        <p><strong class="text-danger">Внимание!</strong> Отменить данное действие будет невозможно!</p>
+                                        <button class="btn btn-danger">Удалить аккаунт</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div id="user-requests">
