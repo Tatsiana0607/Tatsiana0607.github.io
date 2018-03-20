@@ -13,6 +13,7 @@ const URL_TOURS_DATA ="https://polar-star.firebaseio.com/tours";
 const URL_USERS_DATA ="https://polar-star.firebaseio.com/users";
 const TEMP_FILES_REF = firebase.storage().ref('temp');
 const TOURS_FILES_REF = firebase.storage().ref('tours/');
+const USERS_FILES_REF = firebase.storage().ref('users');
 const DEFAULT_PROFILE_IMG = 'https://firebasestorage.googleapis.com/v0/b/polar-star.appspot.com/o/users%2Fdefault-avatar.png?alt=media&token=e99e5596-578a-4c28-a934-e576a1e1d016';
 
 //Общее хранилище
@@ -156,6 +157,7 @@ let vueMain = new Vue({
                 dataType:'json'
             }).then((result) => {
                 this.currentUser = result;
+                vueUser.currentUser = result;
                 if(result.profileImg){
                     this.styleObject.backgroundImage = 'url('+result.profileImg+')';
                 }
