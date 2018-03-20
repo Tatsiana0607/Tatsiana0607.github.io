@@ -50,7 +50,7 @@ let vueAdmin = new Vue({
             newTourCard.uid = this.transliterate(this.currentTour.name);
 
             let ref = TOURS_FILES_REF.child(newTourCard.uid+'/catalogImg.jpg');
-            if(Object.keys(this.catalogImg).length !== 0){
+            if(this.catalogImg.size){
                 ref.put(this.catalogImg).then(function(snapshot) {
                     newTourCard.catalogImg = snapshot.downloadURL;
                     sendRequest();
