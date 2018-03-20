@@ -140,7 +140,7 @@ let vueAdmin = new Vue({
                 console.log('Error', err.message);
             });
         },
-        getUserRequests: function (email) {
+        getUserInfoAndRequests: function (email) {
             let uid = email.replace('.','');
             $.ajax({
                 url:URL_USERS_DATA+"/"+uid+'.json',

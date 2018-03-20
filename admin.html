@@ -139,6 +139,7 @@
                                 <th class="text-center" scope="col">Фамилия</th>
                                 <th class="text-center" scope="col">Телефон</th>
                                 <th class="text-center" scope="col"></th>
+                                <th class="text-center" scope="col"></th>
                             </tr>
                             <template v-for="(user,i) in users">
                                 <tr v-if="user.status==='client'">
@@ -147,7 +148,8 @@
                                     <td class="text-center">{{user.name}}</td>
                                     <td class="text-center">{{user.surname}}</td>
                                     <td class="text-center">{{user.phone}}</td>
-                                    <td v-if="user.requests" class="text-center"><button class="btn btn-primary" @click="getUserRequests(user.email);" data-toggle="modal" data-target="#modalViewRequests">Посмотреть заявки</button></td>
+                                    <td class="text-center"><button class="btn btn-primary" @click="getUserInfoAndRequests(user.email);" data-toggle="modal" data-target="#modalViewInfo">Полная информация</button></td>
+                                    <td v-if="user.requests" class="text-center"><button class="btn btn-primary" @click="getUserInfoAndRequests(user.email);" data-toggle="modal" data-target="#modalViewRequests">Список заявок</button></td>
                                     <td v-else></td>
                                 </tr>
                             </template>
@@ -416,6 +418,37 @@
             </div>
         </div>
         <!--End Modal View Requests-->
+
+        <!-- Modal View Info-->
+        <div id="modalViewInfo" class="modal fade">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Информация о пользователе</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span class="exit color-heading" aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div><span class="color-link"><strong>Имя: </strong>{{user.name || "Информация недоступна"}}</span></div>
+                            <div><span class="color-link"><strong>Фамилия: </strong>{{user.surname || "Информация недоступна"}}</span></div>
+                            <div><span class="color-link"><strong>Дата рождения: </strong>{{user.birthday || "Информация недоступна"}}</span></div>
+                            <div><span class="color-link"><strong>Адрес: </strong>{{user.address || "Информация недоступна"}}</span></div>
+                            <div><span class="color-link"><strong>Телефон: </strong>{{user.phone || "Информация недоступна"}}</span></div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">ОК</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--End Modal View Info-->
 
     </main>
 
