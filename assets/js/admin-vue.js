@@ -165,7 +165,7 @@ let vueAdmin = new Vue({
                 dataType: 'json'
             }).then((result) => {
                 console.log('Заявка обработана', result);
-                this.getUserRequests(email);
+                this.getUserInfoAndRequests(email);
             }).catch((err) => {
                 console.log('Error', err.message);
             });

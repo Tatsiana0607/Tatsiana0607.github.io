@@ -95,7 +95,6 @@ let vueMain = new Vue({
                 dataType: 'json'
             }).then((result) => {
                 if (result) {
-                    $('#email').css('border', '2px solid red');
                     console.log("Пользователь с таким email-ом уже существует!");
                 }
                 else {

@@ -49,10 +49,10 @@ let vueUser = new Vue({
             }
         },
         editPassword: function () {
-            let email = vueMain.currentUser.email.replace(".","");
+            let email = vueMain.currentUser.email.replace(".", "");
             let password = {password: sha1(this.passwordNew)};
             $.ajax({
-                url: URL_USERS_DATA + "/" +email+ ".json",
+                url: URL_USERS_DATA + "/" + email + ".json",
                 type: 'PATCH',
                 data: JSON.stringify(password),
                 contentType: "application/json; charset=utf-8",
@@ -100,7 +100,6 @@ let vueUser = new Vue({
         }
     },
     mounted: function () {
-        let vm = this;
         $('#birthday').datepicker({
             changeYear: true,
             yearRange: "1940:2018",
@@ -109,7 +108,7 @@ let vueUser = new Vue({
             dayNamesMin: [ "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб" ],
             firstDay: 1,
             onSelect: function (date) {
-                vm.currentUser.birthday = date;
+                vueMain.currentUser.birthday = date;
             }
         });
     }

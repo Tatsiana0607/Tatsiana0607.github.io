@@ -56,11 +56,6 @@ let vueCatalog = new Vue({
             }).filter(function (elem) {
                 return elem.days >= days.min && elem.days <= days.max;
             }).filter(function (elem) {
-                // let start = $('#date-start').val();
-                // let end = $('#date-end').val();
-
-                // console.log(start+" | "+end);
-
                 if(!date.start && !date.end) return true;
                 // if(!start && !end) return true;
                 else if(date.start && !date.end) return moment(elem.date) >= moment(date.start);

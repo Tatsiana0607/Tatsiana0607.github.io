@@ -166,72 +166,77 @@
             <div class="modal-dialog">
                 <div class="modal-content">
 
-                    <div class="modal-header">
-                        <h4 class="modal-title">Добавление карточки тура</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span class="exit color-heading" aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                    <form>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Добавление карточки тура</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span class="exit color-heading" aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
 
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-7 col-md-12 col-sm-12 col-12 form-group">
-                                    <label for="name">Фотография для каталога:</label>
-                                    <label class="btn btn-light" for="catalogImg">
-                                        <input id="catalogImg" type="file" class="hide" @change="uploadFile('catalogImg')">
-                                        Выберите файл
-                                    </label>
-                                    <span class="catalog-file-info"></span>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-7 col-md-12 col-sm-12 col-12 form-group">
+                                        <label for="name">Фотография для каталога:</label>
+                                        <label class="btn btn-light" for="catalogImg">
+                                            <input id="catalogImg" type="file" class="hide" required @change="uploadFile('catalogImg')">
+                                            Выберите файл
+                                        </label>
+                                        <span class="catalog-file-info"></span>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <img class="img-fluid" :src="currentTour.catalogImg" @load="$('.overlay').css('opacity', '0');">
+                                        <div class="overlay">
+                                            <i class="file-upload-spinner fas fa-spinner fa-pulse"></i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-lg-5">
-                                    <img class="img-fluid" :src="currentTour.catalogImg" @load="$('.overlay').css('opacity', '0');">
-                                    <div class="overlay">
-                                        <i class="file-upload-spinner fas fa-spinner fa-pulse"></i>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+                                        <label for="name">Название тура:</label>
+                                        <input type="text" class="form-control modal-input" id="name" required placeholder="После сохранения изменить название будет невозможно!" v-model="currentTour.name">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
+                                        <label for="destination">Страна назначения:</label>
+                                        <select id="destination" class="form-control modal-input">
+                                            <option v-for="country in countries" :value="country.id">{{country.value}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
+                                        <label for="price">Стоимость:</label>
+                                        <input type="text" class="form-control modal-input" id="price" placeholder="в BYN"
+                                               required pattern="^\d+$" v-model="currentTour.price">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
+                                        <label for="date">Дата выезда:</label>
+                                        <input type="text" class="form-control modal-input" id="date" placeholder="мм/дд/гггг"
+                                               required v-model="currentTour.date">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
+                                        <label for="duration">Длительность:</label>
+                                        <input type="text" class="form-control modal-input" id="duration" placeholder='Например, "10 дней"'
+                                               required pattern="^(\d)+" v-model="currentTour.duration">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+                                        <label for="description">Описание:</label>
+                                        <textarea id="description" class="form-control modal-input" rows="3" placeholder="3 пункта, каждый с новой строки"
+                                                  required v-model="currentTour.description"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-                                    <label for="name">Название тура:</label>
-                                    <input type="text" class="form-control modal-input" id="name" placeholder="После сохранения изменить название будет невозможно!" v-model="currentTour.name">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
-                                    <label for="destination">Страна назначения:</label>
-                                    <select id="destination" class="form-control modal-input">
-                                        <option v-for="country in countries" :value="country.id">{{country.value}}</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
-                                    <label for="price">Стоимость:</label>
-                                    <input type="text" class="form-control modal-input" id="price" placeholder="в BYN" v-model="currentTour.price">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
-                                    <label for="date">Дата выезда:</label>
-                                    <input type="text" class="form-control modal-input" id="date" placeholder="мм/дд/гггг" v-model="currentTour.date">
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
-                                    <label for="duration">Длительность:</label>
-                                    <input type="text" class="form-control modal-input" id="duration" placeholder='Например, "10 дней"' v-model="currentTour.duration">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-                                    <label for="description">Описание:</label>
-                                    <textarea id="description" class="form-control modal-input" rows="3" placeholder="3 пункта, каждый с новой строки" v-model="currentTour.description"></textarea>
-                                </div>
-                            </div>
                         </div>
-                    </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" @click="addOrEditTourCard();" data-dismiss="modal">Сохранить</button>
-                    </div>
-
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success" @click="addOrEditTourCard();" data-dismiss="modal">Сохранить</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -242,69 +247,70 @@
             <div class="modal-dialog">
                 <div class="modal-content">
 
-                    <div class="modal-header">
-                        <h4 class="modal-title">Редактирование карточки тура &laquo;{{currentTour.name}}&raquo;</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span class="exit color-heading" aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                    <form>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Редактирование карточки тура &laquo;{{currentTour.name}}&raquo;</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span class="exit color-heading" aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
 
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-7 col-md-12 col-sm-12 col-12 form-group">
-                                    <label>Фотография для каталога:</label>
-                                    <label class="btn btn-light" for="catalogImgNew">
-                                        <input id="catalogImgNew" type="file" class="hide" @change="uploadFile('catalogImgNew');">
-                                        Выберите файл
-                                    </label>
-                                    <span class="catalog-file-info"></span>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-7 col-md-12 col-sm-12 col-12 form-group">
+                                        <label>Фотография для каталога:</label>
+                                        <label class="btn btn-light" for="catalogImgNew">
+                                            <input id="catalogImgNew" type="file" class="hide" required @change="uploadFile('catalogImgNew');">
+                                            Выберите файл
+                                        </label>
+                                        <span class="catalog-file-info"></span>
+                                    </div>
+                                    <div class="col-lg-5 margin-b-20">
+                                        <img class="img-fluid" :src="currentTour.catalogImg" @load="$('.overlay').css('opacity', '0');">
+                                        <div class="overlay">
+                                            <i class="file-upload-spinner fas fa-spinner fa-pulse"></i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-lg-5 margin-b-20">
-                                    <img class="img-fluid" :src="currentTour.catalogImg" @load="$('.overlay').css('opacity', '0');">
-                                    <div class="overlay">
-                                        <i class="file-upload-spinner fas fa-spinner fa-pulse"></i>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
+                                        <label for="destinationNew">Страна назначения:</label>
+                                        <select id="destinationNew">
+                                            <template v-for="(country,i) in countries">
+                                                <option v-if="currentTour.country===country.id" selected :value="country.id">{{country.value}}</option>
+                                                <option v-else :value="country.id">{{country.value}}</option>
+                                            </template>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
+                                        <label for="priceNew">Стоимость (в BYN):</label>
+                                        <input type="text" class="form-control modal-input" id="priceNew" required pattern="^\d+$" v-model="currentTour.price">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
+                                        <label for="dateNew">Дата выезда:</label>
+                                        <input type="text" class="form-control modal-input" id="dateNew" required v-model="currentTour.date">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
+                                        <label for="durationNew">Длительность:</label>
+                                        <input type="text" class="form-control modal-input" id="durationNew" required pattern="^(\d)+" v-model="currentTour.duration">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+                                        <label for="descriptionNew">Описание:</label>
+                                        <textarea id="descriptionNew" class="form-control modal-input" rows="3" required v-model="currentTour.description"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
-                                    <label for="destinationNew">Страна назначения:</label>
-                                    <select id="destinationNew">
-                                        <template v-for="(country,i) in countries">
-                                            <option v-if="currentTour.country===country.id" selected :value="country.id">{{country.value}}</option>
-                                            <option v-else :value="country.id">{{country.value}}</option>
-                                        </template>
-                                    </select>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
-                                    <label for="priceNew">Стоимость (в BYN):</label>
-                                    <input type="text" class="form-control modal-input" id="priceNew" v-model="currentTour.price">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
-                                    <label for="dateNew">Дата выезда:</label>
-                                    <input type="text" class="form-control modal-input" id="dateNew" v-model="currentTour.date">
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 form-group">
-                                    <label for="durationNew">Длительность:</label>
-                                    <input type="text" class="form-control modal-input" id="durationNew" v-model="currentTour.duration">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-                                    <label for="descriptionNew">Описание:</label>
-                                    <textarea id="descriptionNew" class="form-control modal-input" rows="3" v-model="currentTour.description"></textarea>
-                                </div>
-                            </div>
                         </div>
-                    </div>
 
-                    <div class="modal-footer">
-                        <button id="edit-button" type="button" class="btn btn-success" @click="addOrEditTourCard();" data-dismiss="modal">Сохранить изменения</button>
-                    </div>
-
+                        <div class="modal-footer">
+                            <button id="edit-button" type="submit" class="btn btn-success" @click="addOrEditTourCard();" data-dismiss="modal">Сохранить изменения</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
